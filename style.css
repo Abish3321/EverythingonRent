@@ -1,0 +1,88 @@
+.navbar-default {
+    background-color: #07103e;
+    border-color: #2e6da4;
+}
+
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a,
+p {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+    background-color: #fff;
+    color: #07103e;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus {
+    background-color: #3b7aad;
+    color: #fff;
+}
+.broom {
+    background-color: #07103e;
+    border-color: white;
+    color: white;
+}
+
+.broom:hover {
+    background-color: white;
+    border-color: #07103e;
+    color: #07103e;
+
+}
+
+.foot {
+    background-color: #07103e;
+}
+
+.footer {
+    padding: 60px 0;
+    width: 100%;
+    background: #07103e;
+    color: #fff;
+}
+
+.footer-title {
+    position: relative;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.footer-title:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 4px;
+    background: white;
+}
+
+.footer-links a {
+    padding: 10px 0;
+    color: #fff;
+    display: block;
+    transition: color 0.5s ease-in-out;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #2e6da4;
+}
+.footer-bottom {
+    width: 100%;
+    padding: 25px 0;
+    text-align: center;
+    color: #fff;
+    background: #07103e;
+
+}
