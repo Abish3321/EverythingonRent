@@ -101,10 +101,6 @@
             padding-top: 20px;
         }
 
-        .add {
-            background-color: white;
-        }
-
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
@@ -130,30 +126,20 @@
             padding-left: 10px;
         }
 
-        .requests {
-            padding-top: 30px;
-            margin: 0;
-            -ms-transform: translateY(-50%);
-            transform: translateY(0%);
-
-        }
-        .add:hover {
-            background-color: #07103e;
-            color: #fff;
-        }
     </style>
 </head>
 
 <body>
 
     <?php include 'header.php'; ?>
+    
     <!-- /.container -->
-    <div class="container request">
+    <div class="container request" style="padding-top: 80px;">
         <div class="col-xs-12 col-md-12">
             <div class="requests">
                 <p><strong>Requests from users will appear here,Respond to requests - Accept or Decline to proceed
                         items bookings!</strong></p>
-                <button style=" width:31%; margin-left:67%;  margin-top:-3% ;border: 1px dashed #07103e;" class="btn btn-block add" href="Rent1.php" role="button">Requests </button>
+                <a style=" width:31%; margin-left:67%;  margin-top:-3% ;border: 1px dashed #07103e;" class="btn btn-block broom" href="renter_request.php" role="button">Requests </a>
             </div>
         </div>
     </div>

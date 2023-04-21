@@ -7,11 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Bootstrap 101 Template</title>
-   
+
     <link rel="shortcut icon" href="fonts/glyphicons-halflings-regular.eot" type="image/x-icon">
 
     <style>
-        
         .broom {
             background-color: #07103e;
             border-color: white;
@@ -77,65 +76,65 @@
             background: #07103e;
 
         }
+
         .thumb {
-			margin-right: 20px;
-			margin-left: 20px;
-		}
+            margin-right: 20px;
+            margin-left: 20px;
+        }
 
-		.thumbnail {
-			height: 300px;
-		}
+        .thumbnail {
+            height: 300px;
+        }
 
-		.thumbnail img {
-			height: 150px;
-			max-width: 100%;
-			display: block;
-			margin: auto;
-		}
+        .thumbnail img {
+            height: 150px;
+            max-width: 100%;
+            display: block;
+            margin: auto;
+        }
 
-		.thumb p {
-			display: inline-block;
-			width: -webkit-fill-available;
-			white-space: nowrap;
-			overflow: hidden !important;
-			text-overflow: ellipsis;
-		}
+        .thumb p {
+            display: inline-block;
+            width: -webkit-fill-available;
+            white-space: nowrap;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+        }
 
-		.thumb img {
-			width: 90%;
-		}
-        
+        .thumb img {
+            width: 90%;
+        }
     </style>
 </head>
 
 <body>
     <?php include 'header.php'; ?>
-    <div class="container">
+    <div class="container" style="margin-top: 43px;">
         <h2><strong>Added Products</strong></h2>
         <hr>
     </div>
     <div class="container">
-            <div class="row thumb">
-                <?php
-                $uname = $_SESSION['username'];
-                $sql1 = "SELECT user_id from users where username = ?";
-                $stmt1 = mysqli_prepare($mysqli, $sql1);
-                mysqli_stmt_bind_param($stmt1, "s", $uname);
-                mysqli_stmt_execute($stmt1);
-                $result1 = mysqli_stmt_get_result($stmt1);
-                $row1 = mysqli_fetch_assoc($result1);
-                $u_id = $row1['user_id'];
+        <div class="row thumb">
+            <?php
+            $uname = $_SESSION['username'];
+            $sql1 = "SELECT user_id from users where username = ?";
+            $stmt1 = mysqli_prepare($mysqli, $sql1);
+            mysqli_stmt_bind_param($stmt1, "s", $uname);
+            mysqli_stmt_execute($stmt1);
+            $result1 = mysqli_stmt_get_result($stmt1);
+            $row1 = mysqli_fetch_assoc($result1);
+            $u_id = $row1['user_id'];
 
-                $sql = "SELECT * FROM items WHERE user_id = ?";
-                $stmt = mysqli_prepare($mysqli, $sql);
-                mysqli_stmt_bind_param($stmt, "i", $u_id);
-                mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
+            $sql = "SELECT * FROM items WHERE user_id = ?";
+            $stmt = mysqli_prepare($mysqli, $sql);
+            mysqli_stmt_bind_param($stmt, "i", $u_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
 
-                // Display data in thumbnails
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
+            // Display data in thumbnails
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
                         <div class="col-sm-3">
                             <div class="thumbnail">
                                 <img src="uploads/' . $row["item_img"] . '" class="img-responsive" alt="furniture">
@@ -147,15 +146,15 @@
                             </div>
                         </div>
                         ';
-                    }
-                } else {
-                    echo "No products found.";
                 }
+            } else {
+                echo "No products found.";
+            }
 
-                ?>
-            </div>
+            ?>
         </div>
-    
+    </div>
+
 
 
     <div class="container-fluid foot">

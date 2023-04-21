@@ -89,9 +89,9 @@
 		}
 
 		.jumbotron {
-			background: url('about2.jpg') no-repeat center center fixed;
+			background: url('images/about2.jpg') no-repeat center center fixed;
 			background-size: cover;
-			color: white;
+			opacity: .7;
 			text-align: center
 		}
 
@@ -99,7 +99,7 @@
 		.about {
 			padding-top: 70px;
 			padding-bottom: 30px;
-
+			color:black;
 		}
 
 		</style>

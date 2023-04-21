@@ -94,7 +94,8 @@ if ($pageName == 'provider_1.php') {
 </head>
 
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top "> 
+		<!-- navbar-fixed-top -->
 		<div class="container-fluid">
 			<div class="container contain">
 				<div class="navbar-header">
@@ -158,7 +159,7 @@ if ($pageName == 'provider_1.php') {
 									<li role="separator" class="divider"></li>
 									<li><a href="MyAds.php" style="color:black;"><span class="glyphicon glyphicon- "></span>My Ads</a></li>
 									<li><a href="add_product.php" style="color:black;"><span class="glyphicon glyphicon- "></span>Add Ads</a></li>
-									<li><a href="Myprofile.php" style="color:black;"><span class="glyphicon glyphicon- "></span>Requests</a></li>
+									<li><a href="renter_request.php" style="color:black;"><span class="glyphicon glyphicon- "></span>Requests</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="server.php?logout" style="color:black;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 								</ul>

@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (mysqli_num_rows($result) == 1) {
 			// Login success, store user data in session and redirect to dashboard
 			$user_data = mysqli_fetch_assoc($result);
-			
+
 			$_SESSION['username'] = $user_data['username'];
 			$_SESSION['is_login'] = true;
 			$_SESSION['email'] = $user_data['email'];
@@ -154,6 +154,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		}
 	}
 }
+
+//send request from details.php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['send_request'])) {
+        $username = $_SESSION['username'];
+        $sql = "SELECT user_id FROM users WHERE username = '$username'";
+        $result = mysqli_query($mysqli, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $userid = $row['user_id'];
+        $itemid = $_POST['itemid'];
+        $startDate = $_POST['start_date'];
+        $endDate = $_POST['end_date'];
+
+        $sql = "INSERT INTO requests (user_id, item_id, startDate, endDate) VALUES ('$userid', '$itemid', '$startDate', '$endDate')";
+        if (mysqli_query($mysqli, $sql)) {
+            echo "<script> alert('Request Send Successfully');  
+            window.location = 'details.php?id=$itemid'; </script>";
+        }
+    }
+}
+
+
 
 //logout
 if (isset($_GET['logout'])) {

@@ -54,7 +54,7 @@
 
     <!-- sign up -->
     <div class="SignUp">
-        <div class="container">
+        <div class="container" style="padding:50px;">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2" style="padding-top: 40px;">
                     <div class="panel-heading" style="background-color: #07103e; color:white; padding: 1px 0px;">

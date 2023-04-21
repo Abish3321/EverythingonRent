@@ -73,7 +73,7 @@
 		}
 
 		.Profile {
-			padding-top: 100px;
+			padding-top: 50px;
 			padding-bottom: 20px;
 			background: url('images/form22.jpg') no-repeat center center fixed;
 			background-size: cover;
@@ -134,7 +134,7 @@
 	<div class="Profile">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-10 col-md-offset-1" >
+				<div class="col-md-10 col-md-offset-1" style="padding-top: 30px;" >
 					<div class="panel panel-default">
 						<div class="panel-heading" style="background-color: #07103e; color:white;">
 							<h2 class=" panel-title">Provider Profile</h2>
@@ -314,7 +314,7 @@
 		$update_query = "UPDATE users SET name='$name', address='$address', city='$city',profile_pic='$filename', state='$state', zip_code='$zip_code' WHERE username='$username'";
 		
 		if ($mysqli->query($update_query)) {
-			header("Location: profile.php");
+			echo "<script>window.location.href = 'profile.php'</script>";
 		}
 		// Handle the profile picture upload
 	}

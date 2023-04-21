@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -101,12 +100,11 @@
     <?php include 'header.php'; ?>
     <?php
     //include 'server.php';
+    
 
-    // Check if the id parameter is present in the query string
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
-        // Fetch the item with the specified id from the database
         $query = "SELECT * FROM items WHERE item_id = $id";
         $result = mysqli_query($mysqli, $query);
         $row = mysqli_fetch_assoc($result);
@@ -117,16 +115,22 @@
     } else {
         echo "<script>alert('Invalid item id.'); window.location = 'Home.php';</script>";
     }
+
     ?>
-    <div class="container content">
+    
+    <div class="container content" style="padding:50px;">
         <div class="row">
-            <form>
+            <form method="POST">
                 <div class="col-sm-6 col-md-7">
                     <div class="form-group">
-                        <img class="img-responsive det_img" src="uploads/<?php echo $row['item_img']; ?>" alt="<?php echo $row['Item_name']; ?>">
-                        <h1><?php echo $row['Item_name']; ?></h1>
+                        <img class="img-responsive det_img" src="uploads/<?php echo $row['item_img']; ?>"
+                            alt="<?php echo $row['Item_name']; ?>">
+                        <h1>
+                            <?php echo $row['Item_name']; ?>
+                        </h1>
                         <p>
-                        <h3>Description : </h3><?php echo $row['item_description']; ?>
+                        <h3>Description : </h3>
+                        <?php echo $row['item_description']; ?>
                         </p>
                     </div>
                 </div>
@@ -148,7 +152,7 @@
                         <p>
                             <?php
                             $dataterm = $row['terms'];
-                            $terms  = explode(".", $dataterm);
+                            $terms = explode(".", $dataterm);
                             ?>
                         <h3>Terms and Conditions: </h3>
                         <?php
@@ -157,7 +161,8 @@
                         }
                         ?>
                         </p>
-                        <button type="button" class="btn form-control broom" data-toggle="modal" data-target="#interestedModal">Interested 😗</button>
+                        <button type="button" class="btn form-control broom" data-toggle="modal"
+                            data-target="#interestedModal">Interested 😗</button>
                         <div class="modal fade" id="interestedModal" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -166,23 +171,25 @@
                                         <h4 class="modal-title">Create a request for provider</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="rentalForm">
+                                        <form id="rentalForm" method="POST" action="server.php">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="dates">Start Date:</label>
-                                                    <input type="date" class="form-control" id="dates" name="dates">
+                                                    <label for="start_date">Start Date:</label>
+                                                    <input type="date" class="form-control" id="start_date" name="start_date">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="dates">Start Date:</label>
-                                                    <input type="date" class="form-control" id="dates" name="dates">
+                                                    <label for="end_date">End Date:</label>
+                                                    <input type="date" class="form-control" id="end_date" name="end_date">
+                                                    <input type="hidden" name="itemid" value="<?php echo $row['item_id'] ?>">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <button type="button" class="btn btn-default broom" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-default broom" data-dismiss="modal">Send Request</button>
 
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-default broom"
+                                                    data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-default broom" name="send_request">Send Request</button>
                                             </div>
                                         </form>
                                     </div>

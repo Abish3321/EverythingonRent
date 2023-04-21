@@ -69,8 +69,8 @@
 		}
 
 		.change {
-			padding-top: 50px;
-			padding-bottom: 50px;
+			padding-top: 100px;
+			padding-bottom: 30px;
 			background: url('images/form22.jpg') no-repeat center center fixed;
 			background-size: cover;
 
@@ -95,6 +95,9 @@
 <body>
 
 	<?php include 'header.php' ?>
+	<?php 
+		
+	?>
 	<!-- content -->
 	<div class="change">
 		<div class="container">
@@ -119,7 +122,7 @@
 									<label for="confirm-password">Confirm New Password:</label>
 									<input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
 								</div>
-								<button type="submit" class="btn btn-default broom">Submit</button>
+								<button type="submit" name="change_pswd" class="btn btn-default broom">Submit</button>
 							</form>
 						</div>
 					</div>

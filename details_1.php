@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -15,6 +14,7 @@
             background-color: #07103e;
             border-color: white;
             color: white;
+            width: 45%;
         }
 
         .broom:hover {
@@ -25,7 +25,7 @@
         }
 
         .content {
-            margin-top: 50px;
+            margin-top: 90px;
         }
 
         .item-img {
@@ -86,7 +86,8 @@
 
         .det_img {
             width: 550px;
-            padding-left: 90px;
+            padding-left: 15px;
+            padding-right: 15px;
         }
 
         .modal-backdrop {
@@ -100,28 +101,29 @@
 <body>
     <?php include 'header.php'; ?>
     <?php
-//include 'server.php';
+    //include 'server.php';
 
-// Check if the id parameter is present in the query string
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    // Check if the id parameter is present in the query string
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
 
-    // Fetch the item with the specified id from the database
-    $query = "SELECT * FROM items WHERE item_id = $id";
-    $result = mysqli_query($mysqli, $query);
-    $row = mysqli_fetch_assoc($result);
-
-    if (!$row) {
+        // Fetch the item with the specified id from the database
+        $query = "SELECT * FROM items WHERE item_id = $id";
+        $result = mysqli_query($mysqli, $query);
+        $row = mysqli_fetch_assoc($result);
+        if (!$row) {
+            echo "<script>alert('Invalid item id.'); window.location = 'Home.php';</script>";
+        }
+    } else {
         echo "<script>alert('Invalid item id.'); window.location = 'Home.php';</script>";
     }
-} else {
-    echo "<script>alert('Invalid item id.'); window.location = 'Home.php';</script>";
-}
 
-?>
+
+    ?>
+
     <div class="container content">
         <div class="row">
-            <form>
+            <form >
                 <div class="col-sm-6 col-md-7">
                     <div class="form-group">
                         <img class="img-responsive det_img" src="uploads/<?php echo $row['item_img']; ?>" alt="<?php echo $row['Item_name']; ?>">
@@ -158,38 +160,8 @@ if (isset($_GET['id'])) {
                         }
                         ?>
                         </p>
-                        <button type="button" class="btn form-control broom" data-toggle="modal" data-target="#interestedModal">Interested 😗</button>
-                        <div class="modal fade" id="interestedModal" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Create a request for provider</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form id="rentalForm">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="dates">Start Date:</label>
-                                                    <input type="date" class="form-control" id="dates" name="dates">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="dates">Start Date:</label>
-                                                    <input type="date" class="form-control" id="dates" name="dates">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="button" class="btn btn-default broom" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-default broom" data-dismiss="modal">Send Request</button>
-
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="edit_item.php?id=<?php echo $row['item_id']; ?>" type="button" class="btn broom">Edit</a>
+                        <a name="delete_item" type="button" class="btn broom">Remove</a>
                     </div>
                 </div>
             </form>
