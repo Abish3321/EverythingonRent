@@ -87,7 +87,7 @@
         }
 
         .thumbnail img {
-            height: 150px;
+            height: 150px; 
             max-width: 100%;
             display: block;
             margin: auto;

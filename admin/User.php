@@ -270,6 +270,9 @@
                   <li>
                     <a href="admin.php" class="active"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
                   </li>
+                  <li >
+                <a href="request.php"><i class="glyphicon glyphicon-heart"></i>&nbsp; Requests</a>
+              </li>
                   <li>
                     <a href="Category.php"><i class="glyphicon glyphicon-th-list"></i>&nbsp; Add Category</a>
                   </li>
@@ -302,7 +305,7 @@
               <table class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>S.No</th>
+                    <th>User Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone No.</th>
@@ -330,78 +333,10 @@
               </a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Aditi Singh</td>
-                    <td>aditi@example.com</td>
-                    <td>123-456-7890</td>
-                    <td>bhawar kua,indore</td>
-                    <td>
-                      <a href="#">Proof 1</a>
-                    </td>
-                    <td>
-                    <a href="EditUser.php" class="text-info" >
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Aditi Singh</td>
-                    <td>aditi@example.com</td>
-                    <td>123-456-7890</td>
-                    <td>bhawar kua,indore</td>
-                    <td>
-                      <a href="#">Proof 1</a>
-                    </td>
-                    <td>
-                    <a href="EditUser.php" class="text-info">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Aditi Singh</td>
-                    <td>aditi@example.com</td>
-                    <td>123-456-7890</td>
-                    <td>bhawar kua,indore</td>
-                    <td>
-                      <a href="#">Proof 1</a>
-                    </td>
-                    <td>
-                    <a href="EditUser.php" class="text-info">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Aditi Singh</td>
-                    <td>aditi@example.com</td>
-                    <td>123-456-7890</td>
-                    <td>bhawar kua,indore</td>
-                    <td>
-                      <a href="#">Proof 1</a>
-                    </td>
-                    <td>
-                    <a href="EditUser.php" class="text-info">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-                    </td>
-                  </tr>
+                  
+                 
+                 
+                
                   
                   
                 </tbody>

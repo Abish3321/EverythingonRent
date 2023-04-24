@@ -129,6 +129,8 @@ if ($pageName == 'provider_1.php') {
 									<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<?php echo $_SESSION['username']; ?><span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="profile.php" style="color:black;"><span class="glyphicon glyphicon-user "></span> Profile</a></li>
+									<li><a href="request_list.php" style="color:black;"><span class="glyphicon glyphicon-tasks"></span> Request Status</a></li>
+									<li><a href="messages.php" style="color:black;"><span class="glyphicon glyphicon-envelope "></span> Messages</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="server.php?logout" style="color:black;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 								</ul>
@@ -145,23 +147,20 @@ if ($pageName == 'provider_1.php') {
 							<li <?php if ($currentPage == 'About') {
 									echo 'class="active"';
 								} ?>><a href="About.php">About Us</a></li>
-							
-
 						</ul>
-
-
 						<ul class="nav navbar-nav navbar-right ">
 							<li class="dropdown ">
 								<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 									<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<?php echo $_SESSION['username']; ?><span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="profile.php" style="color:black;"><span class="glyphicon glyphicon- "></span>My Profile</a></li>
+									<li><a href="profile.php" style="color:black;"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp; My Profile</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="MyAds.php" style="color:black;"><span class="glyphicon glyphicon- "></span>My Ads</a></li>
-									<li><a href="add_product.php" style="color:black;"><span class="glyphicon glyphicon- "></span>Add Ads</a></li>
-									<li><a href="renter_request.php" style="color:black;"><span class="glyphicon glyphicon- "></span>Requests</a></li>
+									<li><a href="MyAds.php" style="color:black;"><span class="glyphicon glyphicon-th-list "></span>&nbsp;&nbsp;My Ads</a></li>
+									<li><a href="add_product.php" style="color:black;"><span class="glyphicon glyphicon-plus "></span>&nbsp;&nbsp;Add Ads</a></li>
+									<li><a href="renter_request.php" style="color:black;"><span class="glyphicon glyphicon-heart-empty"></span>&nbsp;&nbsp;Requests</a></li>
+									<li><a href="messages.php" style="color:black;"><span class="glyphicon glyphicon-envelope "></span>&nbsp; Messages</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="server.php?logout" style="color:black;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+									<li><a href="server.php?logout" style="color:black;"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -175,12 +174,8 @@ if ($pageName == 'provider_1.php') {
 					<?php endif ?>
 				</div>
 			</div>
-
 		</div>
 	</nav>
-
-
-
 </body>
 
 </html>

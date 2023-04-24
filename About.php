@@ -91,7 +91,6 @@
 		.jumbotron {
 			background: url('images/about2.jpg') no-repeat center center fixed;
 			background-size: cover;
-			opacity: .7;
 			text-align: center
 		}
 

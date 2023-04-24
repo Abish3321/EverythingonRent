@@ -277,6 +277,9 @@ color: white;
               <li>
                 <a href="admin.php" class="active"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
               </li>
+              <li >
+                <a href="request.php"><i class="glyphicon glyphicon-heart"></i>&nbsp; Requests</a>
+              </li>
               <li>
                 <a href="Category.php"><i class="glyphicon glyphicon-th-list"></i>&nbsp; Add Category</a>
               </li>

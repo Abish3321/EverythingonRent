@@ -1,5 +1,5 @@
-<?php 
-//	include 'server.php';
+<?php
+//include 'server.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,13 +11,13 @@
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<title>Bootstrap 101 Template</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<link rel="shortcut icon" href="fonts/glyphicons-halflings-regular.eot" type="image/x-icon">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 	<style>
-		
 		.broom {
 			background-color: #07103e;
 			border-color: white;
@@ -29,6 +29,7 @@
 			border-color: #07103e;
 			color: #07103e;
 		}
+
 		.foot {
 			background-color: #07103e;
 		}
@@ -138,29 +139,66 @@
 </head>
 
 <body>
-	<?php include 'header.php';?>
-	<!-- content -->
+	<?php include 'header.php'; 
+	?>
+	<?php
 
+
+	if (isset($_POST['submit_msg'])) {
+		$uname = $_SESSION['username'];
+		$sqll = "SELECT user_id FROM users WHERE username = '$uname'";
+		$u_id_result = mysqli_query($mysqli, $sqll);
+		$row = mysqli_fetch_assoc($u_id_result);
+		$u_id = $row['user_id'];
+
+		$subject = mysqli_real_escape_string($mysqli, $_POST['subject']);
+		$msg = mysqli_real_escape_string($mysqli, $_POST['message']);
+
+		$sql = "INSERT INTO message (subject, message, user_id) VALUES ('$subject', '$msg', $u_id)";
+		$result = mysqli_query($mysqli, $sql);
+
+		if (!$result) {
+			echo "<script>
+                swal({
+                  title: 'Error!',
+                  text: 'Something went wrong!',
+                  icon: 'error',
+                  button: 'OK'
+                });
+            </script>";
+		} else {
+			echo "<script>
+                swal({
+                  title: 'Success!',
+                  text: 'Sent Successful!',
+                  icon: 'success',
+                  button: 'OK'
+                }).then(function() {
+                  window.location.href='Contact.php';
+                });
+            </script>";
+		}
+	}
+
+	?>
+	<!-- content -->
 	<div class="container-fluid contact">
 		<div class="row">
 			<div class="container">
 				<div class="col-md-6">
 					<h2>Contact Us</h2>
 					<div class="panel panel-default">
-	
 						<div class="panel-body ">
-							<form action="#" method="post" role="form">
+							<form method="post" role="form">
 								<div class="form-group">
 									<label for="subject">Subject : </label>
-									<input type="text" class="form-control" id="subject" placeholder="Enter Subject">
+									<input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject">
 								</div>
-								
 								<div class="form-group">
 									<label for="message">Message : </label>
-									<textarea class="form-control" rows="5" id="message"
-										placeholder="Enter your Message"></textarea>
+									<textarea class="form-control" rows="5" id="message" name="message" placeholder="Enter your Message"></textarea>
 								</div>
-								<button type="submit" class="btn btbtn btn-default broom">Send </button>
+								<button type="submit" name="submit_msg" class="btn btn btn-default broom">Send </button>
 							</form>
 						</div>
 					</div>
@@ -174,16 +212,15 @@
 					<h2>Follow Us</h2>
 					<ul class="list-inline">
 						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
 						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 						<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 					</ul>
 				</div>
 			</div>
-			
 		</div>
 	</div>
-
 
 
 
@@ -274,8 +311,8 @@
 
 
 	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 </body>
 

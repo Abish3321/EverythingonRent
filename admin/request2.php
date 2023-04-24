@@ -189,6 +189,36 @@ color: white;
     padding-top: 25px;
     padding-bottom: 15px;
 }}
+#tabedit
+{
+     overflow-y:scroll ;
+     height:380px;
+     margin-top: 15px;
+     overflow-x:scroll ;
+}
+
+
+.tbhead
+{
+  width:80px;
+  font-size:18px;
+  
+}
+
+#main{
+   
+  
+  padding-top: 120px;
+  padding-right: 20px;
+
+}
+
+.btnedit{
+  color:white ;
+  background-color: #07103eee;
+  margin-left: 410px;
+}
+
 
 
 </style>
@@ -232,12 +262,15 @@ color: white;
           <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-              <li class="active">
-                <a href="admin.php" class="active"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
+              <li>
+                <a href="admin.php"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
               </li>
 
               <li>
-                <a href="request.php"><i class="glyphicon glyphicon-heart-empty"></i>&nbsp; Requests</a>
+                <a href="request.php"><i class="glyphicon glyphicon-heart"></i>&nbsp; Requests</a>
+              </li>
+              <li class="active">
+                <a href="request2.php"><i class="glyphicon glyphicon-heart"></i>&nbsp; Requests2</a>
               </li>
               <li>
                 <a href="Category.php"><i class="glyphicon glyphicon-th-list"></i>&nbsp; Add Category</a>
@@ -254,7 +287,88 @@ color: white;
           <!-- /.navbar-collapse -->
       </nav>
 
-      
+      <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row" id="main">
+                <div class="col-md-6 col-sm-6 col-xs-6 coledit">
+                    <h4>Items List</h4>
+                </div>
+                
+            </div>
+            <div id="tabedit" class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
+                <thead>
+                  <tr>
+                  <th>S.No</th>
+                        <th>Category</th>
+                        <th>Item Name</th>
+                        <th>Item Description</th>
+                        <th>Item Details</th>
+                        <th>Terms and conditions</th>
+                        <th>Item Image</th>
+                        <th>Actions</th>
+                
+                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                  <td>1</td>
+                        <td>Electronic</td>
+                        <td>laptop</td>
+                        <td>Lenovo Thinkpad T480/ Core i5 8th Gen/ 8 GB Ram/256 gb ssd Ultrabook</td>
+                        <td>Lenovo Thinkpad T480
+
+Ultrabook ( slimmest laptop)
+
+Core i5 8th Generation
+
+8 GB DDR4 Ram
+
+256 GB SSD
+
+Genuine Windows 10 pro
+
+Good Battery Back upto 3 to 5 hours
+
+30 Days Testing Warranty
+
+Ultra HD Screen
+
+Fingerprint Scanner</td>
+                        <td>xyz</td>
+                        <td><img src="tablet.jpg" width="300" alt="Item 1"></td>
+                       
+                        <td>
+                        <a href="#" class="text-info" >
+              <i class="glyphicon glyphicon-ok"></i>
+              </a>&nbsp;
+              <a href="#" class="text-info">
+              <i class="glyphicon glyphicon-remove"></i>
+              </a>
+              <a href="view2.php" class="text-info">
+              <i class="glyphicon glyphicon-eye-open"></i>
+              </a>
+                        </td>
+                    
+                  </tr>
+                 
+                    
+                  <!-- Add more rows as needed -->
+                </tbody>
+              </table>
+
+
+   
+
+
+
+
+            </div>
+        </div>
+    </div>
+
   </div>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

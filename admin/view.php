@@ -191,6 +191,42 @@ color: white;
 }}
 
 
+
+.tbhead
+{
+  width:80px;
+  font-size:18px;
+  
+}
+
+.view{
+   
+  
+  padding-top: 80px;
+  padding-right: 20px;
+
+}
+
+.btnedit{
+  color:white ;
+  background-color: #07103eee;
+ 
+}
+
+@media (min-width: 1200px){
+.container {
+    width: 1120px;
+}}
+
+
+
+.table-bordered {
+    border: 6px solid #a09db3;
+}
+
+
+
+
 </style>
   
 </head>
@@ -232,12 +268,12 @@ color: white;
           <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-              <li class="active">
-                <a href="admin.php" class="active"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
+              <li>
+                <a href="admin.php"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
               </li>
 
-              <li>
-                <a href="request.php"><i class="glyphicon glyphicon-heart-empty"></i>&nbsp; Requests</a>
+              <li class="active">
+                <a href="request.php"><i class="glyphicon glyphicon-heart"></i>&nbsp; Requests</a>
               </li>
               <li>
                 <a href="Category.php"><i class="glyphicon glyphicon-th-list"></i>&nbsp; Add Category</a>
@@ -254,7 +290,66 @@ color: white;
           <!-- /.navbar-collapse -->
       </nav>
 
-      
+      <div class="container view">
+        <h1 class="text-center">Request Details</h1>
+        <div class="row">
+            <div class="col-md-12 ">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>S.No</th>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <th>Category</th>
+                            <td>Category 1</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>John Doe</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>johndoe@example.com</td>
+                        </tr>
+                        <tr>
+                            <th>Phone No</th>
+                            <td>1234567890</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td>1234 Elm St, Springfield</td>
+                        </tr>
+                        <tr>
+                            <th>Verification Type</th>
+                            <td>Verification Type 1</td>
+                        </tr>
+                        <tr> 
+                            <th>Verification Document</th>
+                            <td>
+                                <a href="path/to/verification.docx" target="_blank">View Document</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Username</th>
+                            <td>johndoe123</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <a href="request.php" class="btn btn-primary btnedit">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>     
+
+
+   
+
+
+
+
+
   </div>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

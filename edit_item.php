@@ -114,9 +114,7 @@
             if (mysqli_query($mysqli, $query)) {
                 echo "<script>window.location.href = 'details_1.php?id='+$id</script>";
                 //header("Location: details_1.php?id=$id");
-                
             } else {
-
                 echo "<script>alert('Error: " . mysqli_error($mysqli) . "');</script>";
             }
         }
@@ -126,9 +124,6 @@
     }
 
     ?>
-
-
-
     <div class="Edit">
         <div class="container">
             <div class="row">
@@ -164,7 +159,6 @@
                                         <label>Terms and Conditions:</label>
                                         <textarea type="text" id="terms_and_conditions" rows="5" class="form-control" fdprocessedid="c8gwej" name="terms" value=""><?php echo $row['terms']; ?></textarea><br>
                                     </div>
-
 
                                     <div class="form-group">
                                         <label>Details:</label>

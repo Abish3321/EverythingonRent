@@ -1,4 +1,16 @@
- 
+<?php
+  $conn = mysqli_connect("localhost", "root", "", "everything");
+  if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+  }
+
+  $sql = "SELECT * FROM users";
+  $result = mysqli_query($conn, $sql);
+?>
+
+
+
+
  <!DOCTYPE php>
  <php lang="en">
  <head>
@@ -267,6 +279,9 @@
               <li>
                 <a href="admin.php" class="active"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
               </li>
+              <li >
+                <a href="request.php"><i class="glyphicon glyphicon-heart"></i>&nbsp; Requests</a>
+              </li>
               <li>
                 <a href="Category.php"><i class="glyphicon glyphicon-th-list"></i>&nbsp; Add Category</a>
               </li>
@@ -299,23 +314,40 @@
               <table class="table table-bordered table-striped">
                 <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
                 <thead>
-                  <tr>
-                    <th>S.No</th>  
-                    <th>Product Name</th>
-                    <th>Provider Name</th>
-                    <th>Product Image</th>
+                <tr>
+                    <th>User Id</th>
+                    <th>User Type</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip-Code</th>
+                    <th>Verification Type</th>
+                    <th>Verification Proof</th>
                     <th>Actions</th>
-                   
                   </tr>
                 </thead>
+                
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Product 1</td>
-                    <td>Provider 1</td>
-                    <td><img src="tablet.jpg" width="100" alt="Item 1"></td>
+                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <tr>
+                    <td><?php echo $row['user_id']; ?></td>
+                    <td><?php echo $row['user_type']; ?></td>
+                   <td> <?php echo $row['name']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td><?php echo $row['phone_number']; ?></td>
+                    <td><?php echo $row['address']; ?></td>
+                    <td><?php echo $row['city']; ?></td>
+                    <td><?php echo $row['state']; ?></td>
+                    <td><?php echo $row['zip_code']; ?></td>
+                    <td><?php echo $row['doctype']; ?></td>
                     <td>
-                    <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
+                    <a href="/uploads/<?php echo $row['document'];?>"><?php echo $row['document']; ?></a>
+                    </td>
+                    <td>
+                    <a href="EditProvider.php?user_id=<?php echo $row['user_id']; ?> " class="text-info" >
               <i class="glyphicon glyphicon-edit"></i>
               </a>&nbsp;
               <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
@@ -324,70 +356,11 @@
                     </td>
             
                   </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Product 2</td>
-                    <td>Provider 2</td>
-                    <td><img src="tablet.jpg"  width="100" alt="Item 1"></td>
-                    <td>
-                    <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-                    </td>
-            
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                      <td>Product 3</td>
-                      <td>Provider 3</td>
-                      <td><img src="tablet.jpg" width="100" alt="Item 1"></td>
-                      <td>
-                      <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-                      </td>
-            
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Product 4</td>
-                      <td>Provider 4</td>
-                      <td><img src="tablet.jpg" width="100" alt="Item 1"></td>
-                      <td>
-                      <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-                      </td>
-            
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Product 5</td>
-                      <td>Provider 5</td>
-                      <td><img src="tablet.jpg" width="100" alt="Item 1"></td>
-                      <td>
-                      <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-                      </td>
-            
-                    </tr>
-                    
+                 
                    
-                  
+                  <?php } ?>  
                 </tbody>
+               
               </table>
 
 <!-- Delete Modal -->
