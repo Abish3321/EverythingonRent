@@ -126,7 +126,7 @@
             <form >
                 <div class="col-sm-6 col-md-7">
                     <div class="form-group">
-                        <img class="img-responsive det_img" src="uploads/<?php echo $row['item_img']; ?>" alt="<?php echo $row['Item_name']; ?>">
+                        <img class="img-responsive det_img" src="ads/<?php echo $row['item_img']; ?>" alt="<?php echo $row['Item_name']; ?>">
                         <h1><?php echo $row['Item_name']; ?></h1>
                         <p>
                         <h3>Description : </h3><?php echo $row['item_description']; ?>

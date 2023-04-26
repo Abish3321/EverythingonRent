@@ -137,7 +137,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Image:</label><br>
-                                        <img class="item-img img-fluid" width="60%" src="uploads/<?php echo $row['item_img']; ?>" alt="<?php echo $row['Item_name']; ?>">
+                                        <img class="item-img img-fluid" width="60%" src="ads/<?php echo $row['item_img']; ?>" alt="<?php echo $row['Item_name']; ?>">
                                         <input type="file" class="form-control-file" id="image" name="image">
                                     </div>
                                     <div class="form-group">

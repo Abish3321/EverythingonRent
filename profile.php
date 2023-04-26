@@ -152,7 +152,7 @@
 
 													<?php 
 														if ($user_data['profile_pic']) { ?>
-															<img src="uploads/<?php echo $user_data['profile_pic'] ?>" class="img" alt="..." width="304" height="236">
+															<img src="profilePic/<?php echo $user_data['profile_pic'] ?>" class="img" alt="<?php echo $user_data['profile_pic'] ?>" width="304" height="236">
 														<?php } else { ?>
 															<img src="images/<?php echo $_filename; ?>" class="img" alt="..." width="304" height="236">
 														<?php } ?>

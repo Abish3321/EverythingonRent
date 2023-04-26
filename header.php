@@ -19,13 +19,19 @@ $currentPage = '';
 // Set the $currentPage variable based on the current page name or identifier
 if ($pageName == 'provider_1.php') {
 	$currentPage = 'provider_1';
-}elseif ($pageName == 'Home.php') {
-		$currentPage = 'Home';
+} elseif ($pageName == 'myAds.php') {
+	$currentPage = 'myAds';
+} elseif ($pageName == 'add_product.php') {
+	$currentPage = 'add_product';
+} elseif ($pageName == 'renter_request.php') {
+	$currentPage = 'renter_request';
+} elseif ($pageName == 'Home.php') {
+	$currentPage = 'Home';
 } elseif ($pageName == 'About.php') {
 	$currentPage = 'About';
 } elseif ($pageName == 'Contact.php') {
 	$currentPage = 'Contact';
-} 
+}
 // Add more conditions to set $currentPage for other pages as needed
 ?>
 <!DOCTYPE html>
@@ -40,6 +46,8 @@ if ($pageName == 'provider_1.php') {
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script src="js/bootstrap.min.js"></script>
 	<link rel="shortcut icon" href="fonts/glyphicons-halflings-regular.eot" type="image/x-icon">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 	<style>
 		@media (min-width: 1200px) {
@@ -94,7 +102,7 @@ if ($pageName == 'provider_1.php') {
 </head>
 
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top "> 
+	<nav class="navbar navbar-default navbar-fixed-top ">
 		<!-- navbar-fixed-top -->
 		<div class="container-fluid">
 			<div class="container contain">
@@ -108,9 +116,7 @@ if ($pageName == 'provider_1.php') {
 					</div>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
-					<?php if (isset($_SESSION['username']) && $user_type == 'renter') { ?>
-						<ul class="nav navbar-nav">
-
+					<?php if (isset($_SESSION['username']) && $user_type == 'renter') { ?> <ul class="nav navbar-nav">
 							<li <?php if ($currentPage == 'Home') {
 									echo 'class="active"';
 								} ?>><a href="Home.php">Home</a></li>
@@ -120,58 +126,75 @@ if ($pageName == 'provider_1.php') {
 							<li <?php if ($currentPage == 'About') {
 									echo 'class="active"';
 								} ?>><a href="About.php">About Us</a></li>
-						
+						</ul>
+						<ul>
+							<?php if ($currentPage == 'Home') { ?>
+								<form class="navbar-form navbar-left" role="search" style="width:40%;">
+									<div class="form-group" style="margin-left: 10%; width: 80%;">
+										<input type="text" class="form-control" placeholder="Search" style="width: -webkit-fill-available;">
+									</div>
+									<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+								</form>
+							<?php } ?>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+										<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<?php echo $_SESSION['username']; ?><span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="profile.php" style="color:black;"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+										<li><a href="request_list.php" style="color:black;"><span class="glyphicon glyphicon-tasks"></span> Request Status</a></li>
+										<li><a href="messages.php" style="color:black;"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="server.php?logout" style="color:black;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+									</ul>
+								</li>
+							</ul>
 
-						</ul>
-						<ul class="nav navbar-nav navbar-right ">
-							<li class="dropdown ">
-								<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-									<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<?php echo $_SESSION['username']; ?><span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="profile.php" style="color:black;"><span class="glyphicon glyphicon-user "></span> Profile</a></li>
-									<li><a href="request_list.php" style="color:black;"><span class="glyphicon glyphicon-tasks"></span> Request Status</a></li>
-									<li><a href="messages.php" style="color:black;"><span class="glyphicon glyphicon-envelope "></span> Messages</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="server.php?logout" style="color:black;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-								</ul>
-							</li>
-						</ul>
-					<?php } else { ?>
-						<ul class="nav navbar-nav">
-							<li <?php if ($currentPage == 'provider_1') {
-									echo 'class="active"';
-								} ?>><a href="provider_1.php">Home</a></li>
-							<li <?php if ($currentPage == 'Contact') {
-									echo 'class="active"';
-								} ?>><a href="Contact.php">Contact Us</a></li>
-							<li <?php if ($currentPage == 'About') {
-									echo 'class="active"';
-								} ?>><a href="About.php">About Us</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right ">
-							<li class="dropdown ">
-								<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-									<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<?php echo $_SESSION['username']; ?><span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="profile.php" style="color:black;"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp; My Profile</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="MyAds.php" style="color:black;"><span class="glyphicon glyphicon-th-list "></span>&nbsp;&nbsp;My Ads</a></li>
-									<li><a href="add_product.php" style="color:black;"><span class="glyphicon glyphicon-plus "></span>&nbsp;&nbsp;Add Ads</a></li>
-									<li><a href="renter_request.php" style="color:black;"><span class="glyphicon glyphicon-heart-empty"></span>&nbsp;&nbsp;Requests</a></li>
-									<li><a href="messages.php" style="color:black;"><span class="glyphicon glyphicon-envelope "></span>&nbsp; Messages</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="server.php?logout" style="color:black;"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
-								</ul>
-							</li>
-						</ul>
-					<?php } ?>
+						<?php } else { ?>
+							<ul class="nav navbar-nav">
+								<li <?php if ($currentPage == 'provider_1') {
+										echo 'class="active"';
+									} ?>><a href="provider_1.php">Home</a></li>
 
-					<?php if (!isset($_SESSION['username'])) : ?>
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="SignUp.php">Sign Up</a></li>
-							<li><a href="Login.php">Login</a></li>
-						</ul>
-					<?php endif ?>
+								<li <?php if ($currentPage == 'myAds') {
+										echo 'class="active"';
+									} ?>><a href="myAds.php">MyAds</a></li>
+
+								<li <?php if ($currentPage == 'renter_request') {
+										echo 'class="active"';
+									} ?>><a href="renter_request.php">All Requests</a></li>
+
+								<li <?php if ($currentPage == 'add_product') {
+										echo 'class="active"';
+									} ?>><a href="add_product.php">Add Product</a></li>
+							</ul>
+
+
+							<ul class="nav navbar-nav navbar-right ">
+								<li class="dropdown ">
+									<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+										<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;
+										<?php echo $_SESSION['username']; ?><span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="profile.php" style="color:black;"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp; My Profile</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="Contact.php" style="color:black;"><span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;Contact Us</a></li>
+										<li><a href="about.php" style="color:black;"><span class="glyphicon glyphicon-th-list "></span>&nbsp;&nbsp;About Us</a></li>
+										<li><a href="messages.php" style="color:black;"><span class="glyphicon glyphicon-envelope "></span>&nbsp; Messages</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="server.php?logout" style="color:black;"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+									</ul>
+								</li>
+							</ul>
+						<?php } ?>
+
+						<?php if (!isset($_SESSION['username'])) : ?>
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="SignUp.php">Sign Up</a></li>
+								<li><a href="Login.php">Login</a></li>
+							</ul>
+						<?php endif ?>
 				</div>
 			</div>
 		</div>

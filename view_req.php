@@ -36,30 +36,24 @@
         }
     ?>
     <div class="container" style="padding-top: 55px;">
-         <h1 class="text-center">User Request Details</h1> 
+         <h1 class="text-center">Your Request Details</h1> 
         <div class="row">
-            
-          
-
             <div class="col-sm-4">
           
 				<div class="thumbnail">
-					<img src="profilePic/<?php echo $row['profile_pic']; ?>" class="img-responsive" width="300" alt="<?php echo $row['profile_pic']?>"  alt="..." >
+					<img src="profilePic/<?php echo $row['profile_pic']?>" class="img-responsive" width="300" alt="<?php echo $row['profile_pic']?>" >
 					<div class="caption">
-						<h3>Requester- <?php echo $row['name']?></h3>
+						<h3>Name - <?php echo $row['name']?></h3>
 						<h5>Contact No.- <?php echo $row['phone_number']?></h5>
                         <h5>Email Address-<?php echo $row['email']?></h5>
                         <h5>Address- <?php echo $row['address']?></h5>
                         <h5>Zip-code- <?php echo $row['zip_code']?></h5>
                         <h5>City- <?php echo $row['city']?></h5>
-
-
 					</div>
 				</div>
 			</div>
 
             <div class="col-md-8">
-               
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
@@ -98,7 +92,7 @@
         </div>
         
         <div class="text-center">
-            <a href="renter_request.php" style="width:30%; margin-bottom:20px;" class="btn btn-default broom">Back</a>
+            <a href="request_list.php" style="width:30%; margin-bottom:20px;" class="btn btn-default broom">Back</a>
         </div>
     </div>
     <?php include 'footer.php';?>

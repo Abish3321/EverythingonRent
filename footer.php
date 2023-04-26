@@ -13,7 +13,7 @@
 
 <body>
 
-	<div class="container-fluid foot">
+	<div class="container-fluid fixed-bottom foot">
 		<div class="row">
 			<div class="col-md-12">
 				<h1> </h1>

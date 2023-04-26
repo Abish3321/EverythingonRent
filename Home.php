@@ -144,7 +144,7 @@
 	<div class="container">
 		<div class="row d-flex justify-content-center thumb">
 			<?php
-			$sql = "SELECT * FROM items";
+			$sql = "SELECT * FROM items where permission='1'";
 			$result = mysqli_query($mysqli, $sql);
 			// Display data in thumbnails
 			if (mysqli_num_rows($result) > 0) {
@@ -152,7 +152,7 @@
 					echo '
                         <div class="col-lg-3 col-md-4">
                             <div class="thumbnail">
-                                <img src="uploads/' . $row["item_img"] . '" class="img-responsive"  alt="furniture">
+                                <img src="ads/' . $row["item_img"] . '" class="img-responsive"  alt="furniture">
                                 <div class="caption">
                                     <h4>' . $row["Item_name"] . '</h4>
                                     <p>' . $row["item_description"] . '</p>

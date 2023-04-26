@@ -53,7 +53,7 @@
                         echo "<tr>";
                         echo "<td>" . $serialNo . "</td>";
                         echo "<td>" . $row['item_id'] . "</td>";
-                        echo "<td><img src='uploads/" . $row['item_img'] . "' width='100' alt='" . $row['username'] . "'></td>";
+                        echo "<td><img src='ads/" . $row['item_img'] . "' width='100' alt='" . $row['username'] . "'></td>";
                         echo "<td>" . $row['startDate'] ."<br> To <br>".$row['endDate'] . "</td>";
                         echo "<td>" . $row['request_created_at']. "</td>";
                         echo "<td>";
@@ -68,7 +68,7 @@
                         echo "<td>
                                 <div class='btn-group' role='group'>
                                     <button type='button' class='btn btn-danger'>Cancel</button>
-                                    <a href='view_request.php?id= " . $row['req_id'] . "' class='btn btn-info'> View</a>
+                                    <a href='view_req.php?id= " . $row['req_id'] . "' class='btn btn-info'> View</a>
                                 </div>
                             </td>";
                         echo "</tr>";

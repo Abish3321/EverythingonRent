@@ -10,7 +10,7 @@
 
 <body>
     <?php include 'header.php' ?>
-    <div class="container" style="padding-top: 55px;">
+    <div class="container" style="padding-top: 55px;padding-bottom: 55px;">
         <h1 class="text-center">Messages Sent</h1>
         <hr>
         <table class="table table-bordered">

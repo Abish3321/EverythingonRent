@@ -4,6 +4,7 @@ include 'dbconn.php';
 
 // Check if the form has been submitted
 
+//User Registeration
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (isset($_POST['register_user'])) {
 		// Retrieve form data
@@ -73,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // 	header('location: index.php');
 // }
 
+//User Login 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (isset($_POST['login'])) {
 		// Retrieve form data
@@ -134,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$image = $_FILES['item_image']['name'];
 
 		// Upload the image file to the server
-		$target_dir = "uploads/";
+		$target_dir = "ads/";
 		$target_file = $target_dir . basename($_FILES["item_image"]["name"]);
 		move_uploaded_file($_FILES["item_image"]["tmp_name"], $target_file);
 
@@ -146,34 +148,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$u_id = $row['user_id'];
 
 		// Insert the form data into the database table
-		$sql = "INSERT INTO items VALUES ('','$item_name', '$item_description','$Details', '$terms_and_conditions', '$image','$item_type',  '$u_id')";
+		$sql = "INSERT INTO items VALUES ('','','$item_name', '$item_description','$Details', '$terms_and_conditions', '$image','$item_type',  '$u_id')";
 		if (mysqli_query($mysqli, $sql)) {
-			echo "New record created successfully";
+			echo "<script>
+				alert('Data added successfully');
+			  window.location.href='add_product.php';
+			</script>";
 		} else {
-			echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+			echo "<script>
+			swal({
+			  title: 'Error!',
+			  text: 'Not!',
+			  icon: 'error',
+			  button: 'OK'
+			});
+			</script>";
 		}
 	}
 }
 
 //send request from details.php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['send_request'])) {
-        $username = $_SESSION['username'];
-        $sql = "SELECT user_id FROM users WHERE username = '$username'";
-        $result = mysqli_query($mysqli, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $userid = $row['user_id'];
-        $itemid = $_POST['itemid'];
-        $startDate = $_POST['start_date'];
-        $endDate = $_POST['end_date'];
+	if (isset($_POST['send_request'])) {
+		$username = $_SESSION['username'];
+		$sql = "SELECT user_id FROM users WHERE username = '$username'";
+		$result = mysqli_query($mysqli, $sql);
+		$row = mysqli_fetch_assoc($result);
+		$userid = $row['user_id'];
+		$itemid = $_POST['itemid'];
+		$startDate = $_POST['start_date'];
+		$endDate = $_POST['end_date'];
 
-        $sql = "INSERT INTO requests (user_id, item_id, startDate, endDate) VALUES ('$userid', '$itemid', '$startDate', '$endDate')";
-        if (mysqli_query($mysqli, $sql)) {
-            echo "<script> alert('Request Send Successfully');  
+		$sql = "INSERT INTO requests (user_id, item_id, startDate, endDate) VALUES ('$userid', '$itemid', '$startDate', '$endDate')";
+		if (mysqli_query($mysqli, $sql)) {
+			echo "<script> alert('Request Send Successfully');  
             window.location = 'details.php?id=$itemid'; </script>";
-        }
-    }
+		}
+	}
 }
+
+
 
 
 
