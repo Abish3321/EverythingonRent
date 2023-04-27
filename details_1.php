@@ -111,6 +111,7 @@
         $query = "SELECT * FROM items WHERE item_id = $id";
         $result = mysqli_query($mysqli, $query);
         $row = mysqli_fetch_assoc($result);
+        $permission= $row['permission']; 
         if (!$row) {
             echo "<script>alert('Invalid item id.'); window.location = 'Home.php';</script>";
         }
@@ -123,7 +124,7 @@
 
     <div class="container content">
         <div class="row">
-            <form >
+            <form>
                 <div class="col-sm-6 col-md-7">
                     <div class="form-group">
                         <img class="img-responsive det_img" src="ads/<?php echo $row['item_img']; ?>" alt="<?php echo $row['Item_name']; ?>">
@@ -160,8 +161,16 @@
                         }
                         ?>
                         </p>
-                        <a href="edit_item.php?id=<?php echo $row['item_id']; ?>" type="button" class="btn broom">Edit</a>
-                        <a name="delete_item" type="button" class="btn broom">Remove</a>
+                        <?php if ($permission == 0) {?>
+                        <div class="form-group">
+                            <button disabled="disabled" style="width:100%;" class="btn btn-warning">Verification Pending</button>
+                        </div>
+                        <?php } else {?>
+                        <div class="form-group">
+                            <a href="edit_item.php?id=<?php echo $row['item_id']; ?>" type="button" class="btn broom">Edit</a>
+                            <a name="delete_item" type="button" class="btn broom">Remove</a>
+                        </div>
+                        <?php }?>
                     </div>
                 </div>
             </form>

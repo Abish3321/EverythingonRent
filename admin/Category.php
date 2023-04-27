@@ -1,5 +1,5 @@
 <?php
-include('Category_data.php');
+include('dbconn.php');
 
 
 ?>
@@ -25,6 +25,8 @@ include('Category_data.php');
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
     <style>
       @media(min-width:768px) {
@@ -216,7 +218,7 @@ include('Category_data.php');
 
       #tabedit {
         overflow-y: scroll;
-        height: 380px;
+        height: 70%;
         margin-top: 15px;
         overflow-x: scroll;
       }
@@ -231,7 +233,7 @@ include('Category_data.php');
       #main {
 
 
-        padding-top: 120px;
+        padding-top: 50px;
         padding-right: 20px;
 
       }
@@ -251,6 +253,97 @@ include('Category_data.php');
     </style>
 
   </head>
+  <?php
+  if (isset($_POST['add_category'])) {
+
+    // Get the form data
+    $category_name = $_POST['category_name'];
+    // Insert the form data into the database table
+    $sql = "INSERT INTO admin_category_add (category_name) VALUES ('$category_name')";
+    if (mysqli_query($mysqli, $sql)) {
+      echo "<script>
+                swal({
+                  title: 'Success!',
+                  text: 'Category Added!',
+                  icon: 'success',
+                  button: 'OK'
+                }).then(function() {
+                  window.location.href='Category.php';
+                });
+            </script>";
+    } else {
+      echo "<script>
+                swal({
+                  title: 'Error!',
+                  text: 'Not Added!',
+                  icon: 'error',
+                  button: 'OK'
+                });
+            </script>";
+    }
+  }
+  ?>
+
+
+  <?php
+  if (isset($_POST['edit_category'])) {
+    // Get the form data
+    $cate_id = $_POST['cat_id'];
+    $category_name = $_POST['category_name'];
+    $sql = "UPDATE admin_category_add SET  category_name = '$category_name' WHERE category_id='$cate_id'";
+
+    if (mysqli_query($mysqli, $sql)) {
+      echo "<script>
+                swal({
+                  title: 'Success!',
+                  text: 'Category Updated!',
+                  icon: 'success',
+                  button: 'OK'
+                }).then(function() {
+                  window.location.href='Category.php';
+                });
+            </script>";
+    } else {
+      echo "<script>
+                swal({
+                  title: 'Error!',
+                  text: 'Not Updated!',
+                  icon: 'error',
+                  button: 'OK'
+                });
+            </script>";
+    }
+  }
+
+  if (isset($_POST['delete_category'])) {
+    $catId = $_POST['cate_id'];
+
+    $sql = "DELETE FROM admin_category_add WHERE category_id = '$catId' ";
+
+    if (mysqli_query($mysqli, $sql)) {
+      echo "<script>
+              swal({
+                title: 'Success!',
+                text: 'Deleted Category Data!',
+                icon: 'success',
+                button: 'OK'
+              }).then(function() {
+                window.location.href='Category.php';
+              });
+            </script>";
+    } else {
+      echo "<script>
+                swal({
+                  title: 'Error!',
+                  text: 'Not Not Deleted!',
+                  icon: 'error',
+                  button: 'OK'
+                });
+            </script>";
+    }
+  }
+  ?>
+
 
   <body>
 
@@ -290,7 +383,7 @@ include('Category_data.php');
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li>
-              <a href="admin.php" class="active"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
+              <a href`="admin.php" class="active"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
             </li>
             <li>
               <a href="request.php"><i class="glyphicon glyphicon-heart"></i>&nbsp; Requests</a>
@@ -303,7 +396,7 @@ include('Category_data.php');
             <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
             <li> <a href="Ad.php"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Ads</a></li>
             <li> <a href="Provider.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
-            <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+            <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(Renter)</a></li>
             <li> <a href="Rented.php"><i class="glyphicon glyphicon-transfer"></i>&nbsp;rented Items</a></li>
           </ul>
         </div>
@@ -323,7 +416,7 @@ include('Category_data.php');
               <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
-                    <form action="Category_data.php" method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data">
                       <div class="modal-header">
                         <h4 class="modal-title" id="categoryModalLabel">Add Category</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -332,106 +425,167 @@ include('Category_data.php');
                         <!-- Category form -->
 
                         <div class="form-group">
-                          <label for="category">Category Name</label>
-                          <input type="text" class="form-control" name="category" placeholder="Enter category name">
+                          <label for="category_name">Category Name</label>
+                          <input type="text" class="form-control" name="category_name" placeholder="Enter category name">
                         </div>
 
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <input type="submit" name="add_category" value="Save" class="btn btn-primary">
+
                       </div>
                     </form>
                   </div>
                 </div>
               </div>
+
               <!--end::Button-->
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6 coledit">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="searchInput" placeholder="Search...">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div id="tabedit" class="table-responsive">
             <table class="table table-bordered table-striped">
               <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
               <thead>
                 <tr>
-                  <th>id</th>
-                  <th>Category</th>
+                  <th>S No.</th>
+                  <th>Category Id</th>
+                  <th>Category Name</th>
                   <th>Actions</th>
+
                 </tr>
               </thead>
               <tbody>
-                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <?php
+                $sql = "SELECT * FROM admin_category_add";
+                $result = mysqli_query($mysqli, $sql);
+                $serial =0;
+                while ($row = mysqli_fetch_assoc($result)) {
+                  $serial ++ ;
+                ?>
+
                   <tr>
-                    <td><?php echo $row['category_id']; ?></td>
-                    <td><?php echo $row['category_name']; ?></td>
                     <td>
-                      <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
+                      <?php echo $serial; ?>
+                    </td>
+                    <td>
+                      <?php echo $row['category_id']; ?>
+                    </td>
+                    <td>
+                      <?php echo $row['category_name']; ?>
+                    </td>
+                    <td>
+                      <a href="#" class="text-info" data-toggle="modal" onclick="editCate('<?php echo $row['category_id']; ?>','<?php echo $row['category_name']; ?>')" data-target="#editCategoryModal">
                         <i class="glyphicon glyphicon-edit"></i>
                       </a>&nbsp;
-                      <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
+
+                      <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal<?php echo $row['category_id']; ?>">
                         <i class="glyphicon glyphicon-trash"></i>
                       </a>
                     </td>
                   </tr>
-                <?php } ?>
+
+                  <div class="modal fade" id="deleteModal<?php echo $row['category_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <form method="post" enctype="multipart/form-data">
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="deleteModalLabel">Delete Item</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          </div>
+                          <div class="modal-body">
+                            <input type="hidden" name="cate_id" value="<?php echo $row['category_id']; ?>">
+                            <p>Are you sure you want to delete this item?</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
+                            <button type="submit" name="delete_category" value="1" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                <?php  } ?>
               </tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
+
     <!-- Edit Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="editModalLabel">Edit Category</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-          <div class="modal-body">
-            <!-- Edit Item form -->
-            <form>
+          <form method="post" enctype="multipart/form-data">
+            <div class="modal-header">
+              <input type="hidden" id="cat_id" name="cat_id">
+              <h4 class="modal-title" id="categoryModalLabel">Edit Category</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+            </div>
+            <div class="modal-body">
+              <!-- Category form -->
+
               <div class="form-group">
-                <label for="itemName">Category Name</label>
-                <input type="text" class="form-control" id="itemName" placeholder="Enter Category name">
+                <label for="category_name">Category Name</label>
+                <input type="text" class="form-control" name="category_name" id="category_name" value="<?php echo $row['category_name'] ?>">
               </div>
-              <div class="form-group">
-                <label for="itemDescription">Category Description</label>
-                <textarea class="form-control" id="itemDescription" rows="3" placeholder="Enter Category description"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
-            <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i> Save Changes</button>
-          </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <input type="submit" name="edit_category" value="Save" class="btn btn-primary">
+
+            </div>
+          </form>
         </div>
       </div>
     </div>
-
     <!-- Delete Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="deleteModalLabel">Delete Item</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-          <div class="modal-body">
-            <p>Are you sure you want to delete this item?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
-            <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
+    <script>
+      $(document).ready(function() {
+        $('#searchInput').keyup(function() {
+          var searchText = $(this).val().toLowerCase();
+          // Loop through all table rows
+          $('tbody tr').each(function() {
+            var rowData = $(this).text().toLowerCase();
+            if (rowData.indexOf(searchText) == -1) {
+              $(this).hide();
+            } else {
+              $(this).show();
+            }
+          });
+        });
+      });
+    </script>
+    <script>
+      function editCate(id, name) {
+        $('#category_name').val(name);
+        $('#cat_id').val(id);
+      }
+    </script>
+    <script>
+      $(document).on("click", ".delete-row", function() {
+        var catId = $(this).data('catid');
+        $("#cat_id").val(catId);
+      });
+    </script>
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
-</php>

@@ -98,6 +98,12 @@ if ($pageName == 'provider_1.php') {
 			background-color: #fff;
 			color: #07103e;
 		}
+		.navbar-default .navbar-nav>.active>.addprod,
+		.navbar-default .navbar-nav>.active>.addprod:hover,
+		.navbar-default .navbar-nav>.active>.addprod:focus {
+			background-color: #fff;
+			color: #07103e;
+		}
 	</style>
 </head>
 
@@ -128,14 +134,6 @@ if ($pageName == 'provider_1.php') {
 								} ?>><a href="About.php">About Us</a></li>
 						</ul>
 						<ul>
-							<?php if ($currentPage == 'Home') { ?>
-								<form class="navbar-form navbar-left" role="search" style="width:40%;">
-									<div class="form-group" style="margin-left: 10%; width: 80%;">
-										<input type="text" class="form-control" placeholder="Search" style="width: -webkit-fill-available;">
-									</div>
-									<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-								</form>
-							<?php } ?>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -166,7 +164,7 @@ if ($pageName == 'provider_1.php') {
 
 								<li <?php if ($currentPage == 'add_product') {
 										echo 'class="active"';
-									} ?>><a href="add_product.php">Add Product</a></li>
+									} ?>><a class="addprod" href="add_product.php">Add Product</a></li>
 							</ul>
 
 
@@ -180,8 +178,10 @@ if ($pageName == 'provider_1.php') {
 										<li><a href="profile.php" style="color:black;"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp; My Profile</a></li>
 										<li role="separator" class="divider"></li>
 										<li><a href="Contact.php" style="color:black;"><span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;Contact Us</a></li>
-										<li><a href="about.php" style="color:black;"><span class="glyphicon glyphicon-th-list "></span>&nbsp;&nbsp;About Us</a></li>
+										<li><a href="about.php" style="color:black;"><span class="glyphicon glyphicon-info-sign "></span>&nbsp;&nbsp;About Us</a></li>
 										<li><a href="messages.php" style="color:black;"><span class="glyphicon glyphicon-envelope "></span>&nbsp; Messages</a></li>
+										<li><a href="change.php" style="color:black;"><span class="glyphicon glyphicon-lock "></span>&nbsp; Change Password</a></li>
+										
 										<li role="separator" class="divider"></li>
 										<li><a href="server.php?logout" style="color:black;"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
 									</ul>

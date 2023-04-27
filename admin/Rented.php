@@ -1,4 +1,35 @@
  
+<?php
+ $conn = mysqli_connect("localhost", "root", "", "everything");
+ if (!$conn) {
+   die("Connection failed: " . mysqli_connect_error());
+ }
+
+// create SQL query
+$sql = "SELECT r.req_id, r.item_id, r.user_id, r.status, i.Item_name,r.startDate, r.endDate, u_r.name AS renter_name, u_p.name AS provider_name
+FROM requests r
+JOIN items i ON r.item_id = i.item_id
+JOIN users u_r ON r.user_id = u_r.user_id AND u_r.user_type = 'renter'
+JOIN users u_p ON i.user_id = u_p.user_id AND u_p.user_type = 'provider'
+WHERE r.status = 1";
+
+
+// execute query
+$result = mysqli_query($conn, $sql);
+
+// check if query was successful
+if (!$result) {
+    echo "Error: " . mysqli_error($conn);
+    exit;
+}
+
+
+
+// close database connection
+mysqli_close($conn);
+?>
+
+
  <!DOCTYPE php>
  <php lang="en">
  <head>
@@ -281,7 +312,7 @@ color: white;
                 <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
                 <li> <a href="Ad.php"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Ads</a></li>
                 <li> <a href="Provider.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
-                <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+                <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(Renter)</a></li>
                 <li class="active"> <a href="Rented.php"><i class="glyphicon glyphicon-transfer"></i>&nbsp;rented Items</a></li>
                </ul>
            </div>
@@ -306,24 +337,30 @@ color: white;
                 <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
                 <thead>
                   <tr>
-                    <th>S.No</th>
-                    <th>Product Name</th>
+                    <th>Item Id</th>
+                    <th>User Id</th>
+                    <th>Item Name</th>
+                    <th>Renter Name</th>
                     <th>Provider Name</th>
-                    <th>Rented To</th>
-                    <th>Rental Date</th>
-                    <th>Return Date</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
                     <th>Actions</th>
                    
                   </tr>
                 </thead>
                 <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                   <tr>
-                    <td>1</td>
-                    <td>Product 1</td>
-                    <td>Provider 1</td>
-                    <td>Name</td>
-            <td>2023-03-20</td>
-            <td>2023-03-22</td>
+
+                  <td><?php echo $row['item_id']; ?></td>
+                  <td><?php echo $row['user_id']; ?></td>
+                  <td><?php echo $row['Item_name']; ?></td>
+                  <td><?php echo $row['renter_name']; ?></td>
+                  <td><?php echo $row['provider_name']; ?></td>
+                  <td><?php echo $row['startDate']; ?></td> 
+                  <td><?php echo $row['endDate']; ?></td>
+
+
             <td>
             <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
               <i class="glyphicon glyphicon-edit"></i>
@@ -333,73 +370,10 @@ color: white;
               </a>
             </td>
                   </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Product 2</td>
-                    <td>Provider 2</td>
-                    <td>Name</td>
-                     <td>2023-03-20</td>
-            <td>2023-03-22</td>
-            <td>
-            <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-            </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                      <td>Product 3</td>
-                      <td>Provider 3</td>
-                      <td>Name</td>
-            <td>2023-03-20</td>
-            <td>2023-03-22</td>
-            <td>
-            <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-            </td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Product 4</td>
-                      <td>Provider 4</td>
-                      <td>Name</td>
-                       <td>2023-03-20</td>
-            <td>2023-03-22</td>
-            <td>
-            <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-            </td>
-                    </tr>
-                    <tr>
-                      <td>1</td>
-                      <td>Product 5</td>
-                      <td>Provider 5</td>
-                      <td>Name</td>
-                       <td>2023-03-20</td>
-            <td>2023-03-22</td>
-            <td>
-            <a href="#" class="text-info" data-toggle="modal" data-target="#editModal">
-              <i class="glyphicon glyphicon-edit"></i>
-              </a>&nbsp;
-              <a href="#" class="text-info delete-row" data-toggle="modal" data-target="#deleteModal">
-              <i class="glyphicon glyphicon-trash"></i>
-              </a>
-            </td>
-                    </tr>
+                 
                     
                    
-                  
+                  <?php } ?>  
                 </tbody>
               </table>
 

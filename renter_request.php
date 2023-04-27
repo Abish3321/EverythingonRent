@@ -88,58 +88,73 @@
 
         // Check if there are any rows returned
         if ($result) {
-            echo "<script>
-            swal({
-              title: 'Success!',
-              text: 'Request Accepted!',
-              icon: 'success',
-              button: 'OK'
-            }).then(function() {
-              window.location.href='renter_request.php';
-            });
-        </script>";
-        } else {
-            echo "<script>
-            swal({
-              title: 'Error!',
-              text: 'Not!',
-              icon: 'error',
-              button: 'OK'
-            });
-        </script>";
+
+            $sql = "UPDATE items SET permission = '0' WHERE item_id = (SELECT item_id FROM requests WHERE req_id = $req_id);";
+            $result = mysqli_query($mysqli, $sql);
+
+            // Check if there are any rows returned
+            if ($result) {
+                    echo "<script>
+                    swal({
+                      title: 'Success!',
+                      text: 'Request Accepted!',
+                      icon: 'success',
+                      button: 'OK'
+                    }).then(function() {
+                      window.location.href='renter_request.php';
+                    });
+                </script>";
+                    } else {
+                        echo "<script>
+                    swal({
+                      title: 'Error!',
+                      text: 'Not!',
+                      icon: 'error',
+                      button: 'OK'
+                    });
+                </script>";
+            }
         }
     }
 
 
     if (isset($_POST['reject'])) {
         $req_id = $_POST['req_id'];
-        
+
         $status = 2;
-        
-        $sql = "UPDATE requests SET status='$status' WHERE req_id='$req_id'";
+        $msg = mysqli_real_escape_string($mysqli, $_POST['message']);
+
+        $sql = "UPDATE requests SET status='$status', msg='$msg' WHERE req_id='$req_id';";
+
         $result = mysqli_query($mysqli, $sql);
-        
+
+        // Check if there are any errors with the query
+        if (!$result) {
+            printf("Error: %s\n", mysqli_error($mysqli));
+            exit();
+        }
+
         // Check if there are any rows returned
-        if ($result) {
+        if (mysqli_affected_rows($mysqli) > 0) {
             echo "<script>
-            swal({
-              title: 'Reject!',
-              text: 'Request Declined!',
-              icon: 'error',
-              button: 'OK'
-            }).then(function() {
-              window.location.href='renter_request.php';
-            });
-        </script>";
+        swal({
+            title: 'Reject!',
+            text: 'Request Declined!',
+            icon: 'error',
+            button: 'OK'
+        }).then(function() {
+            window.location.href='renter_request.php';
+        });
+    </script>";
         } else {
             echo "<script>
-            swal({
-              title: 'Error!',
-              text: 'Not Declined!',
-              icon: 'error',
-              button: 'OK'
-            });
-        </script>";
+        swal({
+            title: 'Error!',
+            text: 'Not Declined!',
+            icon: 'error',
+            button: 'OK'
+        });
+    </script>";
         }
     }
 
@@ -233,7 +248,9 @@
                             echo "                </button>";
                             echo "            </div>";
                             echo "            <div class='modal-body'>";
-                            echo "                Are you sure you want to reject this request?";
+                            echo "                <label>Enter Reason : </label><br>";
+                            echo "                <textarea placeholder='Enter Reason Here' name='message' cols=75></textarea> <br><br><br>";
+                            echo "                <p style='text-align:center; font-weight:bold;'>Are you sure you want to reject this request?</p>";
                             echo "            </div>";
                             echo "            <div class='modal-footer'>";
                             echo "                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>";
@@ -242,7 +259,6 @@
                             echo "        </div>";
                             echo "    </div>";
                             echo "</div>";
-
                         } else if ($row['status'] == 2) {
                             echo "<button type='button' style='width:60%;' class='btn btn-danger'>Rejected</button>";
                             echo "<a href='view_request.php?id=" . $row['req_id'] . "' class='btn btn-info'> View</a>";

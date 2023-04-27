@@ -214,7 +214,7 @@ color: white;
 #main{
    
   
-  padding-top: 120px;
+  padding-top: 50px;
   padding-right: 20px;
 
 }

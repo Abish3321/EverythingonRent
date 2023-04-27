@@ -298,7 +298,7 @@
                 <label class="col-lg-3 control-label">First name:</label>
                 <div class="col-lg-8">
                   <input class="form-control" type="text" value="dey-dey">
-                </div>
+                </div>  
               </div>
               <div class="form-group">
                 <label class="col-lg-3 control-label">Last name:</label>

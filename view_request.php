@@ -38,8 +38,6 @@
     <div class="container" style="padding-top: 55px;">
          <h1 class="text-center">User Request Details</h1> 
         <div class="row">
-            
-          
 
             <div class="col-sm-4">
           

@@ -4,7 +4,7 @@
     die("Connection failed: " . mysqli_connect_error());
   }
 
-  $sql = "SELECT * FROM users";
+  $sql = "SELECT * FROM users WHERE user_type = 'provider'";
   $result = mysqli_query($conn, $sql);
 ?>
 
@@ -225,7 +225,7 @@
   #main{
      
     
-    padding-top: 120px;
+    padding-top: 50px;
     padding-right: 20px;
   
   }
@@ -290,7 +290,7 @@
               <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
               <li> <a href="Ad.php"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Ads</a></li>
               <li class="active"> <a href="Provider.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
-              <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+              <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(Renter)</a></li>
               <li> <a href="Rented.php"><i class="glyphicon glyphicon-transfer"></i>&nbsp;rented Items</a></li>
              </ul>
            </div>
@@ -304,12 +304,24 @@
                     <h4>Providers List</h4>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6 coledit">
-                    <a href="#"><button type="button" class="btn btn-lg  btnedit">Add 
+                    <a href="AddProvider.php"><button type="button" class="btn btn-lg  btnedit">Add 
                             details</button></a>
                     </a>
                     <!--end::Button-->
                 </div>
             </div>
+
+            <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6 coledit">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="searchInput" placeholder="Search...">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
             <div id="tabedit" class="table-responsive">
               <table class="table table-bordered table-striped">
                 <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
@@ -389,7 +401,22 @@
    </div>
  
  
- 
+   <script>
+      $(document).ready(function () {
+        $('#searchInput').keyup(function () {
+          var searchText = $(this).val().toLowerCase();
+          // Loop through all table rows
+          $('tbody tr').each(function () {
+            var rowData = $(this).text().toLowerCase();
+            if (rowData.indexOf(searchText) == -1) {
+              $(this).hide();
+            } else {
+              $(this).show();
+            }
+          });
+        });
+      });
+    </script>
    
  
      <!-- jQuery -->

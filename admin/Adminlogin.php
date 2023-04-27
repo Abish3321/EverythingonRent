@@ -66,10 +66,10 @@
 		
 body {
     
-    padding-top:100px ;
-    padding-bottom:100px ;
+    padding-top:145px ;
+    padding-bottom:155px ;
     background: url('form22.jpg') no-repeat center center fixed;
-		background-size: cover;
+			background-size: cover;
                  
 }
 .submit{
@@ -97,7 +97,7 @@ color: white;
             <div class="panel panel-default">
               <div class="panel-heading" style="background-color: #07103e; color:white;">
                 <div class="log" style="font-size:25px; text-align:center;">
-                    <img src="logo.png" width="100">
+                    <img src="logo.png" width="40">&nbsp;Everything On Rent
                   </div>
               </div>
               <div class="panel-body">

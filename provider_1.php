@@ -32,7 +32,6 @@
             background-color: white;
             border-color: #07103e;
             color: #07103e;
-
         }
 
         .foot {
@@ -139,7 +138,7 @@
             <div class="requests">
                 <p><strong>Requests from users will appear here,Respond to requests - Accept or Decline to proceed
                         items bookings!</strong></p>
-                <a style=" width:31%; margin-left:67%;  margin-top:-3% ;border: 1px dashed #07103e;" class="btn btn-block broom" href="renter_request.php" role="button">Requests </a>
+                <a style=" width:31%; margin-left:67%;  margin-top:-3% ;border: 1px dashed #07103e;" class="btn btn-block btn-lg broom" href="renter_request.php" role="button">Renter Requests </a>
             </div>
         </div>
     </div>
@@ -178,9 +177,10 @@
                     <p><strong> So why not give it a try? Sign up today and start renting out your items!</strong>
                     </p>
 
-                    <a style="width:70%;" class="btn btn-default broom" href="add_product.php" role="button">Add Products </a>
+                    <a style="width:95%;" class="btn btn-default btn-lg  broom" href="add_product.php" role="button">Add Products </a>
                 </div>
                 <hr>
+                
 
             </div>
             <div class="col-xs-12 col-md-5">

@@ -1,4 +1,5 @@
-<?php //include 'server.php'; ?>
+<?php //include 'server.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="utf-8">
@@ -13,6 +14,8 @@
 <script src="js/bootstrap.min.js"></script>
 <link rel="shortcut icon" href="fonts/glyphicons-halflings-regular.eot" type="image/x-icon">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <style>
     .broom,
     .broo:hover {
@@ -51,7 +54,58 @@
 <body>
 
     <?php include 'header.php'; ?>
+    <?php
+    //provider add items....
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['add_item'])) {
 
+            // Get the form data
+            $item_type = $_POST['item_type'];
+            $item_name = $_POST['item_name'];
+            $item_description = $_POST['item_description'];
+            $Details = $_POST['Details'];
+            $terms_and_conditions = $_POST['terms_and_conditions'];
+
+            $image = $_FILES['item_image']['name'];
+
+            // Upload the image file to the server
+            $target_dir = "ads/";
+            $target_file = $target_dir . basename($_FILES["item_image"]["name"]);
+            move_uploaded_file($_FILES["item_image"]["tmp_name"], $target_file);
+
+            $uname = $_SESSION['username'];
+            $sqll = "SELECT user_id FROM users WHERE username = '$uname' ";
+            $u_id_result = mysqli_query($mysqli, $sqll);
+            // Fetch the row from the result set and extract the user_id value
+            $row = mysqli_fetch_assoc($u_id_result);
+            $u_id = $row['user_id'];
+
+            // Insert the form data into the database table
+            $sql = "INSERT INTO items VALUES ('','','$item_name', '$item_description','$Details', '$terms_and_conditions', '$image','$item_type',  '$u_id')";
+            if (mysqli_query($mysqli, $sql)) {
+                echo "<script>
+                swal({
+                  title: 'Success!',
+                  text: 'Item details have been sent for verification!',
+                  icon: 'success',
+                  button: 'OK'
+                }).then(function() {
+                  window.location.href='myAds.php';
+                });
+            </script>";
+            } else {
+                echo "<script>
+			swal({
+			  title: 'Error!',
+			  text: 'Not!',
+			  icon: 'error',
+			  button: 'OK'
+			});
+			</script>";
+            }
+        }
+    }
+    ?>
     <!-- sign up -->
     <div class="SignUp">
         <div class="container" style="padding:50px;">
@@ -63,7 +117,7 @@
                         </div>
                     </div>
                     <div class="panel-body sign">
-                        <form action="server.php" method="POST" enctype="multipart/form-data">
+                        <form method="POST" enctype="multipart/form-data">
                             <div class="col-md-6">
 
                                 <div class="form-group ">

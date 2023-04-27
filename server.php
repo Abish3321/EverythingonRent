@@ -122,50 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 
-//provider add items....
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (isset($_POST['add_item'])) {
 
-		// Get the form data
-		$item_type = $_POST['item_type'];
-		$item_name = $_POST['item_name'];
-		$item_description = $_POST['item_description'];
-		$Details = $_POST['Details'];
-		$terms_and_conditions = $_POST['terms_and_conditions'];
-
-		$image = $_FILES['item_image']['name'];
-
-		// Upload the image file to the server
-		$target_dir = "ads/";
-		$target_file = $target_dir . basename($_FILES["item_image"]["name"]);
-		move_uploaded_file($_FILES["item_image"]["tmp_name"], $target_file);
-
-		$uname = $_SESSION['username'];
-		$sqll = "SELECT user_id FROM users WHERE username = '$uname' ";
-		$u_id_result = mysqli_query($mysqli, $sqll);
-		// Fetch the row from the result set and extract the user_id value
-		$row = mysqli_fetch_assoc($u_id_result);
-		$u_id = $row['user_id'];
-
-		// Insert the form data into the database table
-		$sql = "INSERT INTO items VALUES ('','','$item_name', '$item_description','$Details', '$terms_and_conditions', '$image','$item_type',  '$u_id')";
-		if (mysqli_query($mysqli, $sql)) {
-			echo "<script>
-				alert('Data added successfully');
-			  window.location.href='add_product.php';
-			</script>";
-		} else {
-			echo "<script>
-			swal({
-			  title: 'Error!',
-			  text: 'Not!',
-			  icon: 'error',
-			  button: 'OK'
-			});
-			</script>";
-		}
-	}
-}
 
 //send request from details.php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

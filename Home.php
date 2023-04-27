@@ -13,8 +13,6 @@
 	<link rel="shortcut icon" href="fonts/glyphicons-halflings-regular.eot" type="image/x-icon">
 
 	<style>
-
-
 		.jumbotron {
 			background: url('images/img2.jpg') no-repeat center center fixed;
 			background-size: cover;
@@ -28,104 +26,105 @@
 		}
 
 		.broom {
-            background-color: #07103e;
-            border-color: white;
-            color: white;
-        }
+			background-color: #07103e;
+			border-color: white;
+			color: white;
+		}
 
-        .broom:hover {
-            background-color: white;
-            border-color: #07103e;
-            color: #07103e;
+		.broom:hover {
+			background-color: white;
+			border-color: #07103e;
+			color: #07103e;
 
-        }
+		}
 
-        .foot {
-            background-color: #07103e;
-        }
+		.foot {
+			background-color: #07103e;
+		}
 
-        .footer {
-            padding: 60px 0;
-            width: 100%;
-            background: #07103e;
-            color: #fff;
-        }
+		.footer {
+			padding: 60px 0;
+			width: 100%;
+			background: #07103e;
+			color: #fff;
+		}
 
-        .footer-title {
-            position: relative;
-            color: #fff;
-            font-size: 24px;
-            font-weight: 600;
-            margin-top: 5px;
-            margin-bottom: 20px;
-        }
+		.footer-title {
+			position: relative;
+			color: #fff;
+			font-size: 24px;
+			font-weight: 600;
+			margin-top: 5px;
+			margin-bottom: 20px;
+		}
 
-        .footer-title:after {
-            position: absolute;
-            content: '';
-            left: 0;
-            bottom: 0;
-            width: 30px;
-            height: 4px;
-            background: white;
-        }
+		.footer-title:after {
+			position: absolute;
+			content: '';
+			left: 0;
+			bottom: 0;
+			width: 30px;
+			height: 4px;
+			background: white;
+		}
 
-        .footer-links a {
-            padding: 10px 0;
-            color: #fff;
-            display: block;
-            transition: color 0.5s ease-in-out;
-            text-decoration: none;
-        }
+		.footer-links a {
+			padding: 10px 0;
+			color: #fff;
+			display: block;
+			transition: color 0.5s ease-in-out;
+			text-decoration: none;
+		}
 
-        .footer-links a:hover {
-            color: #2e6da4;
-        }
+		.footer-links a:hover {
+			color: #2e6da4;
+		}
 
 
 
-        .footer-bottom {
-            width: 100%;
-            padding: 25px 0;
-            text-align: center;
-            color: #fff;
-            background: #07103e;
+		.footer-bottom {
+			width: 100%;
+			padding: 25px 0;
+			text-align: center;
+			color: #fff;
+			background: #07103e;
 
-        }
+		}
 
-        .thumb {
-            margin-right: 20px;
-            margin-left: 20px;
-        }
+		.thumb {
+			margin-right: 20px;
+			margin-left: 20px;
+		}
 
-        .thumbnail {
-            height: 300px;
-        }
+		.thumbnail {
+			height: 300px;
+		}
 
-        .thumbnail img {
-            height: 150px; 
-            max-width: 100%;
-            display: block;
-            margin: auto;
-        }
+		.thumbnail img {
+			height: 150px;
+			max-width: 100%;
+			display: block;
+			margin: auto;
+		}
 
-        .thumb p {
-            display: inline-block;
-            width: -webkit-fill-available;
-            white-space: nowrap;
-            overflow: hidden !important;
-            text-overflow: ellipsis;
-        }
+		.thumb p {
+			display: inline-block;
+			width: -webkit-fill-available;
+			white-space: nowrap;
+			overflow: hidden !important;
+			text-overflow: ellipsis;
+		}
 
-        .thumb img {
-            width: 90%;
-        }
+		.thumb img {
+			width: 90%;
+		}
 	</style>
 </head>
 
 
 <body>
-	<?php include 'header.php';?>
+	<?php include 'header.php'; ?>
+
 	<div class="container" style="padding-top: 50px;">
 		<div class="jumbotron text-center">
 			<div class="container text">
@@ -139,6 +138,20 @@
 		</div><!-- /.jumbotron -->
 	</div>
 
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<form class="form-inline" role="search" style="width:40%;">
+					<div class="input-group" style="width: -webkit-fill-available;">
+						<input type="text" id="searchInput" class="form-control" placeholder="Search">
+						<span class="input-group-btn">
+							<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div><br><br>
 	<!-- category -->
 	<!-- thumbnail -->
 	<div class="container">
@@ -264,6 +277,40 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	// Get the search input element and thumbnail container element
+	const searchInput = document.querySelector('#searchInput');
+	const thumbnailContainer = document.querySelector('.thumb');
+
+	// Store the original thumbnails in an array
+	const originalThumbnails = Array.from(thumbnailContainer.querySelectorAll('.thumbnail'));
+
+	// Listen for input events on the search input element
+	searchInput.addEventListener('input', () => {
+		// Get the user input and convert it to lowercase
+		const searchQuery = searchInput.value.toLowerCase();
+
+		// Remove all the existing thumbnail elements from the DOM
+		thumbnailContainer.innerHTML = '';
+
+		// Filter the original thumbnails array to only include thumbnails that match the search query
+		const filteredThumbnails = originalThumbnails.filter(thumbnail => {
+			const title = thumbnail.querySelector('h4').textContent.toLowerCase();
+			const description = thumbnail.querySelector('p').textContent.toLowerCase();
+
+			return title.includes(searchQuery) || description.includes(searchQuery);
+		});
+
+		// Create new thumbnail elements for the filtered thumbnails and append them to the thumbnail container
+		filteredThumbnails.forEach(thumbnail => {
+			const newThumbnail = document.createElement('div');
+			newThumbnail.className = 'col-lg-3 col-md-3';
+			newThumbnail.innerHTML = thumbnail.innerHTML;
+
+			thumbnailContainer.appendChild(newThumbnail);
+		});
+	});
+</script>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>

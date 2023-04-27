@@ -137,7 +137,7 @@
 				<div class="col-md-10 col-md-offset-1" style="padding-top: 30px;" >
 					<div class="panel panel-default">
 						<div class="panel-heading" style="background-color: #07103e; color:white;">
-							<h2 class=" panel-title">Provider Profile</h2>
+							<h2 class=" panel-title">My Profile</h2>
 						</div>
 						<div class="panel-body">
 							<div class="col-md-6">
@@ -198,8 +198,8 @@
 									<label for="zip_code">Zip Code</label>
 									<input type="text" class="form-control" id="zip_code" name="zip_code" value="<?php echo $user_data['zip_code'] ?>">
 								</div>
-								<input type="submit"  class="btn btn-default broom" name="update" value="Update">
-								<a href="change.php" class="btn btn-default broom">Change Password</a>
+								<input type="submit"  class="btn btn-default form-control broom" name="update" value="Update">
+								
 								</form>
 							</div>
 						</div>
@@ -210,7 +210,6 @@
 	</div>
 
 	<!-- footer -->
-
 	<div class="container-fluid foot">
 		<div class="row">
 			<div class="col-md-12">

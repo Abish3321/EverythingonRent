@@ -1,4 +1,6 @@
-<?php include 'dbconn.php'; ?>
+<?php
+include 'dbconn.php';
+?>
 <!DOCTYPE php>
 <php lang="en">
 
@@ -201,7 +203,7 @@
 
       #tabedit {
         overflow-y: scroll;
-        height: 380px;
+        height: 80%;
         margin-top: 15px;
         overflow-x: scroll;
       }
@@ -216,7 +218,7 @@
       #main {
 
 
-        padding-top: 120px;
+        padding-top: 50px;
         padding-right: 20px;
 
       }
@@ -286,7 +288,7 @@
             <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
             <li> <a href="Ad.php"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Ads</a></li>
             <li> <a href="Provider.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
-            <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+            <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(Renter)</a></li>
             <li> <a href="Rented.php"><i class="glyphicon glyphicon-transfer"></i>&nbsp;rented Items</a></li>
           </ul>
         </div>
@@ -299,50 +301,70 @@
             <div class="col-md-6 col-sm-6 col-xs-6 coledit">
               <h4>Items List</h4>
             </div>
-          </div>
-          <div class="table-wrapper-scroll-y">
-            <div id="tabedit" class="table-responsive">
-              <table class="table table-bordered">
-                <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
-                <thead class="sticky-top">
-                  <tr>
-                    <th>S.No</th>
-                    <th>Category</th>
-                    <th>Item Name</th>
-                    <th>Item Description</th>
-                    <th>Item Details</th>
-                    <th>Terms and conditions</th>
-                    <th>Item Image</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $sql = "SELECT * FROM items";
-                  $result = mysqli_query($mysqli, $sql);
 
-                  // Output data in table row with <td> tags
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>";
-                    echo "<td>" . $row["item_id"] . "</td>";
-                    echo "<td>" . $row["item_type"] . "</td>";
-                    echo "<td>" . $row["Item_name"] . "</td>";
-                    echo "<td>" . $row["item_description"] . "</td>";
-                    echo "<td>" . $row["item_details"] . "</td>";
-                    echo "<td>" . $row["terms"] . "</td>";
-                    echo "<td><img src='../ads/" . $row["item_img"] . "' width='300' alt=" . $row['item_img'] . "></td>";
-                    echo "<td>";
-                    echo "<a href='approve.php?id=" . $row["item_id"] . "' class='text-info'><i class='glyphicon glyphicon-ok'></i></a>&nbsp;";
-                    echo "<a href='reject.php?id=" . $row["item_id"] . "' class='text-info'><i class='glyphicon glyphicon-remove'></i></a>";
-                    echo "<a href='view2.php?id=" . $row["item_id"] . "' class='text-info'><i class='glyphicon glyphicon-eye-open'></i></a>";
-                    echo "</td>";
-                    echo "</tr>";
-                  }
-                  ?>
-                  <!-- Add more rows as needed -->
-                </tbody>
-              </table>
-            </div>
+          </div>
+          <div id="tabedit" class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
+              <thead>
+                <tr>
+                  <th>S.No</th>
+                  <th>Item Id</th>
+                  <th>Category</th>
+                  <th>Item Name</th>
+                  <th>Item Description</th>
+                  <th>Item Details</th>
+                  <th>Terms and conditions</th>
+                  <th>Item Image</th>
+                  <th>Actions</th>
+
+
+                </tr>
+              </thead>
+              <tbody>
+              <?php
+                $sql = "SELECT * FROM items";
+                $result = mysqli_query($mysqli, $sql);
+
+                $serial = 0;
+                while ($row = $result->fetch_assoc()) {
+                  $serial++;
+                ?>
+                <tr>
+                  <td><?php echo $serial;?></td>
+                  <td><?php echo $row['item_id']?></td>
+                  <td><?php echo $row['item_type'];?></td>
+                  <td><?php echo $row['Item_name'];?></td>
+                  <td><?php echo $row['item_description'];?></td>
+                  <td><?php echo $row['item_details'];?></td>
+                  <td><?php echo $row['terms'];?></td>
+                  <td><img src="../ads/<?php echo $row['item_img']?>" width="200" alt="<?php echo $row['item_img']?>"></td>
+
+                  <td>
+                    <a href="#" class="text-info">
+                      <i class="glyphicon glyphicon-ok"></i>
+                    </a>&nbsp;
+                    <a href="#" class="text-info">
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                    <a href="view2.php" class="text-info">
+                      <i class="glyphicon glyphicon-eye-open"></i>
+                    </a>
+                  </td>
+
+                </tr>
+
+                <?php } ?>
+                <!-- Add more rows as needed -->
+              </tbody>
+            </table>
+
+
+
+
+
+
+
           </div>
         </div>
       </div>
