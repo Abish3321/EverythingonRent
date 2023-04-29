@@ -1,5 +1,5 @@
 <?php
-include('Category_data.php');
+include 'dbconn.php';
 ?>
 
 ?>
@@ -342,7 +342,7 @@ include('Category_data.php');
                                                 <label for="item-type">Item Type :</label>
                                                 <?php
                                                 $query = "SELECT  * FROM category_add";
-                                                $result = mysqli_query($db,$query);
+                                                $result = mysqli_query($mysqli,$query);
                                                 ?>
                                                 <select class="form-control" id="item-type" name="item-type">;
                                                 <?php 

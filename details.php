@@ -100,7 +100,24 @@
     <?php include 'header.php'; ?>
     <?php
     //include 'server.php';
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['send_request'])) {
+            $username = $_SESSION['username'];
+            $sql = "SELECT user_id FROM users WHERE username = '$username'";
+            $result = mysqli_query($mysqli, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $userid = $row['user_id'];
+            $itemid = $_POST['itemid'];
+            $startDate = $_POST['start_date'];
+            $endDate = $_POST['end_date'];
     
+            $sql = "INSERT INTO requests (user_id, item_id, startDate, endDate) VALUES ('$userid', '$itemid', '$startDate', '$endDate')";
+            if (mysqli_query($mysqli, $sql)) {
+                echo "<script> alert('Request Send Successfully');  
+                window.location = 'details.php?id=$itemid'; </script>";
+            }
+        }
+    }
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];

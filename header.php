@@ -1,9 +1,10 @@
 <?php
 include 'server.php';
-
+if (isset($_SESSION['is_login'])) {
 $username = $_SESSION['username'];
 
 $user_type = $_SESSION['user_type'];
+}
 ?>
 
 <?php
@@ -27,6 +28,8 @@ if ($pageName == 'provider_1.php') {
 	$currentPage = 'renter_request';
 } elseif ($pageName == 'Home.php') {
 	$currentPage = 'Home';
+}elseif ($pageName == 'request_list.php') {
+		$currentPage = 'rentrequest';
 } elseif ($pageName == 'About.php') {
 	$currentPage = 'About';
 } elseif ($pageName == 'Contact.php') {
@@ -126,6 +129,9 @@ if ($pageName == 'provider_1.php') {
 							<li <?php if ($currentPage == 'Home') {
 									echo 'class="active"';
 								} ?>><a href="Home.php">Home</a></li>
+							<li <?php if ($currentPage == 'rentrequest') {
+									echo 'class="active"';
+								} ?>><a href="request_list.php">Request List</a></li>
 							<li <?php if ($currentPage == 'Contact') {
 									echo 'class="active"';
 								} ?>><a href="Contact.php">Contact Us</a></li>
@@ -142,6 +148,7 @@ if ($pageName == 'provider_1.php') {
 										<li><a href="profile.php" style="color:black;"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 										<li><a href="request_list.php" style="color:black;"><span class="glyphicon glyphicon-tasks"></span> Request Status</a></li>
 										<li><a href="messages.php" style="color:black;"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
+										<li><a href="change.php" style="color:black;"><span class="glyphicon glyphicon-lock "></span>&nbsp; Change Password</a></li>
 										<li role="separator" class="divider"></li>
 										<li><a href="server.php?logout" style="color:black;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 									</ul>
@@ -171,8 +178,10 @@ if ($pageName == 'provider_1.php') {
 							<ul class="nav navbar-nav navbar-right ">
 								<li class="dropdown ">
 									<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-										<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;
+									<?php if (isset($_SESSION['is_login'])){?>
+									<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;
 										<?php echo $_SESSION['username']; ?><span class="caret"></span>
+										<?php } ?>
 									</a>
 									<ul class="dropdown-menu">
 										<li><a href="profile.php" style="color:black;"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp; My Profile</a></li>
@@ -189,7 +198,7 @@ if ($pageName == 'provider_1.php') {
 							</ul>
 						<?php } ?>
 
-						<?php if (!isset($_SESSION['username'])) : ?>
+						<?php if (!isset($_SESSION['is_login'])) : ?>
 							<ul class="nav navbar-nav navbar-right">
 								<li><a href="SignUp.php">Sign Up</a></li>
 								<li><a href="Login.php">Login</a></li>

@@ -103,13 +103,21 @@
             $Details = $_POST['item_details'];
             $terms_and_conditions = $_POST['terms'];
 
-            $image = $_FILES["image"]["name"];
-            $target_dir = "uploads/";
-            $target_file = $target_dir . basename($_FILES["image"]["name"]);
-            move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+                $filename = $_FILES['image']['name'];
+                $tempname = $_FILES['image']['tmp_name'];
+                $folder = "ads/";
+            
+                // Move the uploaded file to the designated folder
+                move_uploaded_file($tempname, $folder . $filename);
+              } else {
+                // $user_data should contain the user's current profile data
+                $filename = $_POST['old_image'];
+              }
+
 
             // Update the item in the database
-            $query = "UPDATE items SET Item_name = '$item_name', item_type = '$item_type', item_description = '$item_description', item_details = '$Details', terms = '$terms_and_conditions', item_img = '$image' WHERE item_id = $id";
+            $query = "UPDATE items SET Item_name = '$item_name', item_type = '$item_type', item_description = '$item_description', item_details = '$Details', terms = '$terms_and_conditions', item_img = '$filename' WHERE item_id = $id";
 
             if (mysqli_query($mysqli, $query)) {
                 echo "<script>window.location.href = 'details_1.php?id='+$id</script>";
@@ -137,8 +145,10 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="image">Image:</label><br>
-                                        <img class="item-img img-fluid" width="60%" src="ads/<?php echo $row['item_img']; ?>" alt="<?php echo $row['Item_name']; ?>">
-                                        <input type="file" class="form-control-file" id="image" name="image">
+                                        <img class="item-img img-fluid" width="60%" src="ads/<?php echo $row['item_img']; ?>" alt="<?php echo $row['item_img']; ?>">
+                                        <input type="file" class="form-control-file" id="image" name="image" >
+                                        <input type="hidden" class="form-control-file" id="image" name="old_image" value="<?php echo $row['item_img']; ?>">
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label>Item Name:</label>

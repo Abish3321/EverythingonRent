@@ -12,6 +12,9 @@ include 'dbconn.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
 
     <style>
       @media(min-width:768px) {
@@ -232,6 +235,40 @@ include 'dbconn.php';
 
   </head>
 
+  <?php
+  if (isset($_POST['approve_user'])) {
+    $item_id = $_POST['approved_id'];
+
+    $permission = '1';
+    $sql = "UPDATE items SET permission = $permission WHERE item_id = $item_id";
+    $result = mysqli_query($mysqli, $sql);
+    if ($result) {
+      echo "<script>
+    swal({
+      title: 'Success!',
+      text: 'Request Accepted as Provider!',
+      icon: 'success',
+      button: 'OK'
+    }).then(function() {
+      window.location.href='request2.php';
+    });
+</script>";
+    } else {
+      echo "<script>
+    swal({
+      title: 'Error!',
+      text: 'Not accepted!',
+      icon: 'error',
+      button: 'OK'
+    });
+</script>";
+    }
+  }
+
+  if (isset($_POST['reject_user'])) {
+  }
+  ?>
+
   <body>
 
 
@@ -286,7 +323,6 @@ include 'dbconn.php';
 
 
             <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
-            <li> <a href="Ad.php"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Ads</a></li>
             <li> <a href="Provider.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
             <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(Renter)</a></li>
             <li> <a href="Rented.php"><i class="glyphicon glyphicon-transfer"></i>&nbsp;rented Items</a></li>
@@ -306,10 +342,10 @@ include 'dbconn.php';
           <div id="tabedit" class="table-responsive">
             <table class="table table-bordered table-striped">
               <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
-              <thead>
+              <thead style="position:sticky;top: 0;background-color:#283866; color:white;">
                 <tr>
                   <th>S.No</th>
-                  <th>Item Id</th>
+                  <th>Owner Id</th>
                   <th>Category</th>
                   <th>Item Name</th>
                   <th>Item Description</th>
@@ -322,7 +358,7 @@ include 'dbconn.php';
                 </tr>
               </thead>
               <tbody>
-              <?php
+                <?php
                 $sql = "SELECT * FROM items";
                 $result = mysqli_query($mysqli, $sql);
 
@@ -330,29 +366,68 @@ include 'dbconn.php';
                 while ($row = $result->fetch_assoc()) {
                   $serial++;
                 ?>
-                <tr>
-                  <td><?php echo $serial;?></td>
-                  <td><?php echo $row['item_id']?></td>
-                  <td><?php echo $row['item_type'];?></td>
-                  <td><?php echo $row['Item_name'];?></td>
-                  <td><?php echo $row['item_description'];?></td>
-                  <td><?php echo $row['item_details'];?></td>
-                  <td><?php echo $row['terms'];?></td>
-                  <td><img src="../ads/<?php echo $row['item_img']?>" width="200" alt="<?php echo $row['item_img']?>"></td>
+                  <tr>
+                    <td><?php echo $serial; ?></td>
+                    <td><?php echo $row['user_id'] ?></td>
+                    <td><?php echo $row['item_type']; ?></td>
+                    <td><?php echo $row['Item_name']; ?></td>
+                    <td><?php echo $row['item_description']; ?></td>
+                    <td><?php echo $row['item_details']; ?></td>
+                    <td><?php echo $row['terms']; ?></td>
+                    <td><img src="../ads/<?php echo $row['item_img'] ?>" width="200" alt="<?php echo $row['item_img'] ?>"></td>
 
-                  <td>
-                    <a href="#" class="text-info">
-                      <i class="glyphicon glyphicon-ok"></i>
-                    </a>&nbsp;
-                    <a href="#" class="text-info">
-                      <i class="glyphicon glyphicon-remove"></i>
-                    </a>
-                    <a href="view2.php" class="text-info">
-                      <i class="glyphicon glyphicon-eye-open"></i>
-                    </a>
-                  </td>
+                    <form method="post" enctype="multipart/form-data">
+                      <td>
+                        <!-- Modal for approval -->
+                        <div class="modal fade" id="approveModal<?php echo $row['item_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="approveModalLabel<?php echo $row['item_id'] ?>" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="approveModalLabel<?php echo $row['item_id'] ?>">Confirm Approval</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <input type="hidden" name="approved_id" value="<?php echo $row['item_id'] ?>">
+                                Are you sure you want to approve this item?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button name="approve_user" class="btn btn-primary">Approve</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Modal for rejection -->
+                        <div class="modal fade" id="rejectModal<?php echo $row['item_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="rejectModalLabel<?php echo $row['item_id'] ?>" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="rejectModalLabel<?php echo $row['item_id'] ?>">Confirm Rejection</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <input type="hidden" name="rejected_id" value="<?php echo $row['item_id'] ?>">
+                                Are you sure you want to reject this item?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" name="reject_user" class="btn btn-danger">Reject</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
-                </tr>
+                        <a href="#" class="text-info" data-toggle="modal" data-target="#approveModal<?php echo $row['item_id'] ?>"><i class="glyphicon glyphicon-ok">Approve</i></a>&nbsp;<br>
+                        <a href="#" class="text-info" data-toggle="modal" data-target="#rejectModal<?php echo $row['item_id'] ?>"><i class="glyphicon glyphicon-remove">Reject</i></a>&nbsp;<br><br>
+                        <a href="view2.php?id=<?php echo $row['item_id'] ?>" class="text-info"><i class="glyphicon glyphicon-eye-open">View</i></a>
+                      </td>
+                    </form>
+
+                  </tr>
 
                 <?php } ?>
                 <!-- Add more rows as needed -->

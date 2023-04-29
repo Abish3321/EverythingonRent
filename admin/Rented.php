@@ -1,10 +1,6 @@
  
 <?php
- $conn = mysqli_connect("localhost", "root", "", "everything");
- if (!$conn) {
-   die("Connection failed: " . mysqli_connect_error());
- }
-
+include 'dbconn.php';
 // create SQL query
 $sql = "SELECT r.req_id, r.item_id, r.user_id, r.status, i.Item_name,r.startDate, r.endDate, u_r.name AS renter_name, u_p.name AS provider_name
 FROM requests r
@@ -15,18 +11,18 @@ WHERE r.status = 1";
 
 
 // execute query
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($mysqli, $sql);
 
 // check if query was successful
 if (!$result) {
-    echo "Error: " . mysqli_error($conn);
+    echo "Error: " . mysqli_error($mysqli);
     exit;
 }
 
 
 
 // close database connection
-mysqli_close($conn);
+mysqli_close($mysqli);
 ?>
 
 
@@ -310,7 +306,6 @@ color: white;
                 <li>
               
                 <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
-                <li> <a href="Ad.php"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Ads</a></li>
                 <li> <a href="Provider.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
                 <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(Renter)</a></li>
                 <li class="active"> <a href="Rented.php"><i class="glyphicon glyphicon-transfer"></i>&nbsp;rented Items</a></li>
@@ -335,7 +330,7 @@ color: white;
             <div id="tabedit" class="table-responsive">
               <table class="table table-bordered table-striped">
                 <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
-                <thead>
+                <thead style="position:sticky;top: 0;background-color:#283866; color:white;">
                   <tr>
                     <th>Item Id</th>
                     <th>User Id</th>

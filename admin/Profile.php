@@ -1,358 +1,422 @@
- 
- <!DOCTYPE php>
- <php lang="en">
- <head>
-   <title>Rent Admin Dashboard</title>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   <!-- Custom CSS -->
-   <link rel="stylesheet" href="custom.css">
-   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
- 
- 
- <style>
-   
-   
-   @media(min-width:768px) {
-     body {
-         margin-top: 50px;
-     }
-   
-     
-   }
-   
-   #wrapper {
-     padding-left: 0;
-   }
-   
-   #page-wrapper {
-     width: 100%;
-     padding: 0;
-     background-color: #fff;
-   
-   }
-   
-   @media(min-width:768px) {
-     #wrapper {
-         padding-left: 225px;
-     }
-   
-     #page-wrapper {
-         padding: 22px 10px;
-     }
-   }
-   
-   
-   
-   .top-nav {
-     padding: 0 15px;
-   }
-   
-   .top-nav>li {
-     display: inline-block;
-     
-   }
-   
-   .top-nav>li>a {
-     padding-top: 20px;
-     padding-bottom: 20px;
-     line-height: 20px;
-     color: #fff;
-   }
-   
-   .top-nav>li>a:hover,
-   .top-nav>li>a:focus,
-   .top-nav>.open>a,
-   .top-nav>.open>a:hover,
-   .top-nav>.open>a:focus {
-     color: #fff;
-     background-color: #ffffff;
-   }
-   
-   .top-nav>.open>.dropdown-menu {
-     float: left;
-     position: absolute;
-     margin-top: 0;
-     /*border: 1px solid rgba(0,0,0,.15);*/
-     border-top-left-radius: 0;
-     border-top-right-radius: 0;
-     background-color: #fff;
-     -webkit-box-shadow: 0 6px 12px #ffffff;
-     box-shadow: 0 6px 12px white;
-   }
-   
-   .top-nav>.open>.dropdown-menu>li>a {
-     white-space: normal;
-   }
-   
-   /* Side Navigation of admin*/
-   
-   @media(min-width:768px) {
-     .side-nav {
-         position: fixed;
-         top: 60px;
-         left: 225px;
-         width: 225px;
-         margin-left: -225px;
-         border: none;
-         border-radius: 0;
-         border-top: 1px  solid;
-         overflow-y: auto;
-         background-color:#07103eee;
-         /*background-color: #5A6B7D;*/
-         bottom: 0;
-         overflow-x: hidden;
-         padding-bottom: 40px;
-     }
-   
-     .side-nav>li>a {
-         width: 225px;
-         border-bottom: 1px #07103eee solid;
-     }
-   
-     .side-nav li a:hover,
-     .side-nav li a:focus {
-         outline: none;
-         background-color: #07103eee !important;
-         color: #ffffff;
-     }
-   }
-   
-   .side-nav>li>ul {
-     padding: 0;
-     border-bottom: 1px rgba(121, 18, 18, 0.3) solid;
-   }
-   
-   .side-nav>li>ul>li>a {
-     display: block;
-     padding: 10px 15px 10px 38px;
-     text-decoration: none;
-     /*color: #999;*/
-     color: #ffffff;
-   }
-   
-   .side-nav>li>ul>li>a:hover {
-     color: #ffffff;
-   }
-   
-   .navbar .nav>li>a>.label {
-     -webkit-border-radius: 50%;
-     -moz-border-radius: 50%;
-     border-radius: 50%;
-     position: absolute;
-     top: 14px;
-     right: 6px;
-     font-size: 10px;
-     font-weight: normal;
-     min-width: 15px;
-     min-height: 15px;
-     line-height: 1.0em;
-     text-align: center;
-     padding: 2px;
-   }
-   
-   .navbar .nav>li>a:hover>.label {
-     top: 10px;
-       
-   }
-   .navbar-default .navbar-nav>li>a:hover {
-   color: white;
-   }
-   
-   .navbar-logo{
-     color: white;
-     font-size:x-large;
-     }
-       .navbar {
-     background-color:#07103eee;
-     color: white;
-     font-size: 16px;
-     }
-    
-   
-   .vis {
-     text-align: center;
-     height: 400px;
-   }
-   
-   .vis1 {
-     text-align: center;
-     height: 400px;
-   }
-   .navbar-default .navbar-nav>li>a {
-     color: currentColor;
-   }
-   .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-     color: #ffffff;
-     background-color: darkgray;
-   }
-   @media (min-width: 768px){
-   .navbar-nav>li>a {
-       padding-top: 25px;
-       padding-bottom: 15px;
-   }}
- 
- 
- .btnedit{
-   color:white ;
-   background-color: #07103eee;
-   margin-left: 364px;
- }
+<?php
+include 'dbconn.php';
 
- .avatar{
-    width:200px;
-    height:200px;
-    }
-    @media (min-width: 1200px){
-    .container {
-        width: 1118px;
-        }}
- 
- 
- </style>
-   
- </head>
- <body>
-   
- 
-   <div id="throbber" style="display:none; min-height:120px;"></div>
-   <div id="noty-holder"></div>
-   <div id="wrapper">
-       <!-- Navigation -->
-       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-           <!-- Brand and toggle get grouped for better mobile display -->
-           <div class="navbar-header">
-               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                   <span class="sr-only">Toggle navigation</span>
-                   <span class="icon-bar"></span>
-                   <span class="icon-bar"></span>
-                   <span class="icon-bar"></span>
-               </button>
-               <a style="padding-top: 20px;font-size:25px; color:white"class="navbar-logo" href="admin.php"></a>
-               <img src="logo.png" width="40">&nbsp;</a>Everything On Rent
- 
-           </div>
-           <!-- Top Menu Items -->
-           <ul class="nav navbar-nav navbar-right">
-             <li class="dropdown">
-                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                     <span class="glyphicon glyphicon-th"></span> Info <span class="caret"></span></a>
-                 <ul class="dropdown-menu">
-                     <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-              
-                   <li role="separator" class="divider"></li>
-                   
-                   <li><a href="Adminlogin.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                 </ul>
-               </li>
-           </ul>
-           <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-           <div class="collapse navbar-collapse navbar-ex1-collapse">
-               <ul class="nav navbar-nav side-nav">
-                   <li>
-                     <a href="admin.php" class="active"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
-                   </li>
-                   <li>
-                     <a href="Category.php"><i class="glyphicon glyphicon-th-list"></i>&nbsp; Add Category</a>
-                   </li>
-                   <li>
-                  
-                   <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
-                   <li> <a href="Ad.php"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Ads</a></li>
-                   <li> <a href="Provider.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
-                   <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
-                   <li> <a href="Rented.php"><i class="glyphicon glyphicon-transfer"></i>&nbsp;rented Items</a></li>
-               </ul>
-           </div>
-           <!-- /.navbar-collapse -->
-       </nav>
- 
+// Check if the id parameter is present in the query string
+if (isset($id)) {
+  $id = $_GET['id'];
 
-       <div class="container bootstrap snippets bootdey">
-        <h1 class="text-primary">Edit Profile</h1>
-          <hr>
-        <div class="row">
-          <!-- left column -->
-          <div class="col-md-3">
-            <div class="text-center">
-              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="avatar img-circle img-thumbnail" alt="avatar">
-              <h6>Upload a different photo...</h6>
-              
-              <input type="file" class="form-control">
-            </div>
-          </div>
-          
-          <!-- edit form column -->
-          <div class="col-md-9 personal-info">
-            <div class="alert alert-info alert-dismissable">
-              <a class="panel-close close" data-dismiss="alert">×</a> 
-              <i class="fa fa-coffee"></i>
-              This is an <strong>.alert</strong>. Use this to show important messages to the user.
-            </div>
-            <h3>Personal info</h3>
-            
-            <form class="form-horizontal" role="form">
-              <div class="form-group">
-                <label class="col-lg-3 control-label">First name:</label>
-                <div class="col-lg-8">
-                  <input class="form-control" type="text" value="dey-dey">
-                </div>  
-              </div>
-              <div class="form-group">
-                <label class="col-lg-3 control-label">Last name:</label>
-                <div class="col-lg-8">
-                  <input class="form-control" type="text" value="bootdey">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-lg-3 control-label">Company:</label>
-                <div class="col-lg-8">
-                  <input class="form-control" type="text" value="">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-lg-3 control-label">Email:</label>
-                <div class="col-lg-8">
-                  <input class="form-control" type="text" value="janesemail@gmail.com">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-lg-3 control-label">Time Zone:</label>
-                <div class="col-lg-8">
-                  <div class="ui-select">
-                    <select id="user_time_zone" class="form-control">
-                      <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                      <option value="Alaska">(GMT-09:00) Alaska</option>
-                      <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                      <option value="Arizona">(GMT-07:00) Arizona</option>
-                      <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                      <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                      <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                      <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-      </div>
-    </div>
-    <hr>
-      
-                
- 
-   </div>
- 
- 
- 
+  // Fetch the user's data from the database
+  $user_query = "SELECT * FROM admin_profile WHERE id='1'";
+  $user_result = $mysqli->query($user_query);
+  $user_data = $user_result->fetch_assoc();
+
+  //profile
+if ($user_data['profile_pic']) {
+  $_filename = $user_data['profile_pic'];
+} else {
+  $_filename = "bahubali.jpeg";
+}
+}
+
+// Process the form data
+
+if (isset($_POST['save'])) {
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $company = $_POST['company'];
+
+  if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
+    $filename = $_FILES['profile_pic']['name'];
+    $tempname = $_FILES['profile_pic']['tmp_name'];
+    $folder = "../images/";
+
+    // Move the uploaded file to the designated folder
+    move_uploaded_file($tempname, $folder . $filename);
+  } else {
+    // $user_data should contain the user's current profile data
+    $filename = $_POST['old_image'];
+  }
+  // echo $filename;
+  // die;
+  $id = 1;
+  // Update the user's profile
+  $update_query = "UPDATE admin_profile SET name='$name',email='$email',phone='$phone',company='$company',profile_pic='$filename' WHERE id='$id'";
   
- 
-     <!-- jQuery -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-     <!-- Bootstrap JavaScript -->
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   </body>
-   </php>        
+  $result = $mysqli->query($update_query);
+  
+  if ($result) {
+    header("Location:Profile.php");
+  }
+}
+?>
 
+<!DOCTYPE php>
+<php lang="en">
+
+  <head>
+    <title>Rent Admin Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="custom.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <style>
+      @media(min-width:768px) {
+        body {
+          margin-top: 50px;
+        }
+
+
+      }
+
+      #wrapper {
+        padding-left: 0;
+      }
+
+      #page-wrapper {
+        width: 100%;
+        padding: 0;
+        background-color: #fff;
+
+      }
+
+      @media(min-width:768px) {
+        #wrapper {
+          padding-left: 225px;
+        }
+
+        #page-wrapper {
+          padding: 22px 10px;
+        }
+      }
+
+
+
+      .top-nav {
+        padding: 0 15px;
+      }
+
+      .top-nav>li {
+        display: inline-block;
+
+      }
+
+      .top-nav>li>a {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        line-height: 20px;
+        color: #fff;
+      }
+
+      .top-nav>li>a:hover,
+      .top-nav>li>a:focus,
+      .top-nav>.open>a,
+      .top-nav>.open>a:hover,
+      .top-nav>.open>a:focus {
+        color: #fff;
+        background-color: #ffffff;
+      }
+
+      .top-nav>.open>.dropdown-menu {
+        float: left;
+        position: absolute;
+        margin-top: 0;
+        /*border: 1px solid rgba(0,0,0,.15);*/
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background-color: #fff;
+        -webkit-box-shadow: 0 6px 12px #ffffff;
+        box-shadow: 0 6px 12px white;
+      }
+
+      .top-nav>.open>.dropdown-menu>li>a {
+        white-space: normal;
+      }
+
+      /* Side Navigation of admin*/
+
+      @media(min-width:768px) {
+        .side-nav {
+          position: fixed;
+          top: 60px;
+          left: 225px;
+          width: 225px;
+          margin-left: -225px;
+          border: none;
+          border-radius: 0;
+          border-top: 1px solid;
+          overflow-y: auto;
+          background-color: #07103eee;
+          /*background-color: #5A6B7D;*/
+          bottom: 0;
+          overflow-x: hidden;
+          padding-bottom: 40px;
+        }
+
+        .side-nav>li>a {
+          width: 225px;
+          border-bottom: 1px #07103eee solid;
+        }
+
+        .side-nav li a:hover,
+        .side-nav li a:focus {
+          outline: none;
+          background-color: #07103eee !important;
+          color: #ffffff;
+        }
+      }
+
+      .side-nav>li>ul {
+        padding: 0;
+        border-bottom: 1px rgba(121, 18, 18, 0.3) solid;
+      }
+
+      .side-nav>li>ul>li>a {
+        display: block;
+        padding: 10px 15px 10px 38px;
+        text-decoration: none;
+        /*color: #999;*/
+        color: #ffffff;
+      }
+
+      .side-nav>li>ul>li>a:hover {
+        color: #ffffff;
+      }
+
+      .navbar .nav>li>a>.label {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        position: absolute;
+        top: 14px;
+        right: 6px;
+        font-size: 10px;
+        font-weight: normal;
+        min-width: 15px;
+        min-height: 15px;
+        line-height: 1.0em;
+        text-align: center;
+        padding: 2px;
+      }
+
+      .navbar .nav>li>a:hover>.label {
+        top: 10px;
+
+      }
+
+      .navbar-default .navbar-nav>li>a:hover {
+        color: white;
+      }
+
+      .navbar-logo {
+        color: white;
+        font-size: x-large;
+      }
+
+      .navbar {
+        background-color: #07103eee;
+        color: white;
+        font-size: 16px;
+      }
+
+
+      .vis {
+        text-align: center;
+        height: 400px;
+      }
+
+      .vis1 {
+        text-align: center;
+        height: 400px;
+      }
+
+      .navbar-default .navbar-nav>li>a {
+        color: currentColor;
+      }
+
+      .navbar-default .navbar-nav>.active>a,
+      .navbar-default .navbar-nav>.active>a:focus,
+      .navbar-default .navbar-nav>.active>a:hover {
+        color: #ffffff;
+        background-color: darkgray;
+      }
+
+      @media (min-width: 768px) {
+        .navbar-nav>li>a {
+          padding-top: 25px;
+          padding-bottom: 15px;
+        }
+      }
+
+
+      .btnedit {
+        color: white;
+        background-color: #07103eee;
+        margin-left: 364px;
+      }
+
+      .avatar {
+        width: 200px;
+        height: 200px;
+      }
+
+      @media (min-width: 1200px) {
+        .container {
+          width: 1118px;
+        }
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+
+    <div id="throbber" style="display:none; min-height:120px;"></div>
+    <div id="noty-holder"></div>
+    <div id="wrapper">
+      <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a style="padding-top: 20px;font-size:25px; color:white" class="navbar-logo" href="admin.php"></a>
+          <img src="logo.png" width="40">&nbsp;</a>Everything On Rent
+
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+              aria-expanded="false">
+              <span class="glyphicon glyphicon-th"></span> Info <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+
+              <li role="separator" class="divider"></li>
+
+              <li><a href="Adminlogin.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav side-nav">
+            <li>
+              <a href="admin.php" class="active"><i class="glyphicon glyphicon-dashboard"></i>&nbsp;Dashboard</a>
+            </li>
+            <li>
+              <a href="Category.php"><i class="glyphicon glyphicon-th-list"></i>&nbsp; Add Category</a>
+            </li>
+            <li>
+
+            <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
+            <li> <a href="Provider.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
+            <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(Renter)</a></li>
+            <li> <a href="Rented.php"><i class="glyphicon glyphicon-transfer"></i>&nbsp;rented Items</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </nav>
+
+      <?php
+      $sql = "SELECT * FROM admin_profile";
+      $result = mysqli_query($mysqli, $sql);
+      $admin_data = mysqli_fetch_assoc($result);
+      if ($admin_data['profile_pic']) {
+        $_filename = $admin_data['profile_pic'];
+      } else {
+        $_filename = "bahubali.jpeg";
+      }
+      ?>
+      <div class="Profile">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1" style="margin-top: 20px;">
+              <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: #07103e; color:white;">
+                  <h2 class=" panel-title">Provider Profile</h2>
+                </div>
+                <div class="panel-body">
+                  <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="profile_pic">Profile Picture</label>
+                        <div class="row">
+                          <div class="col-xs-9 col-md-6">
+                            <a href="#" class="thumbnail">
+                              <!-- <img src="images/profile.jpeg" class="img" alt="..." width="304"
+                            height="236"  > -->
+                              <img src="../images/<?php echo $_filename; ?>" class="img"
+                                alt="<?php echo $_filename; ?>" width="304" height="236">
+                            </a>
+                          </div>
+                          <div class="col-xs-6 col-md-9">
+                            <input type="file" id="profile_pic" name="profile_pic">
+                            <input type="hidden" id="old_image" name="old_image" value="<?php echo $_filename; ?>">
+
+                            <p class="help-block">Upload a new profile picture.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+
+                      <div class="form-group">
+                        <label for="name"> Name</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                          value="<?php echo $admin_data['name'] ?>">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" readonly
+                          value="<?php echo $admin_data['email'] ?>" name="email">
+                      </div>
+                      <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="phone"
+                          value="<?php echo $admin_data['phone'] ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" class="form-control" id="company" name="company"
+                          value="<?php echo $admin_data['company'] ?>">
+                      </div>
+                      <input type="submit" name="save" class="btn btn-default broom" value="Save">
+                      <a href="change.php" class="btn btn-default broom">Change Password</a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</php>

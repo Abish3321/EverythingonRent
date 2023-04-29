@@ -14,8 +14,13 @@
     <link rel="shortcut icon" href="fonts/glyphicons-halflings-regular.eot" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        .social-icons a{
+				color: white;
+				font-size:large;
+			}
         .foot {
             background-color: #07103e;
         }
@@ -172,7 +177,7 @@
                     <th>Item ID</th>
                     <th>Item Name</th>
                     <th>User Image</th>
-                    <th>User Name</th>
+                    <th>Renter's Name</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Actions</th>
@@ -204,7 +209,7 @@
                         echo "<td>" . $row['item_id'] . "</td>";
                         echo "<td>" . $row['Item_name'] . "</td>";
                         echo "<td><img src='profilePic/" . $row['profile_pic'] . "' width='100' alt='" . $row['username'] . "'></td>";
-                        echo "<td>" . $row['username'] . "</td>";
+                        echo "<td>" . $row['name'] . "</td>";
                         echo "<td>" . $row['startDate'] . "</td>";
                         echo "<td>" . $row['endDate'] . "</td>";
                         echo "<td>";
@@ -283,86 +288,83 @@
         </table>
     </div>
 
-    <div class="container-fluid foot">
-        <div class="row">
-            <div class="col-md-12">
-                <h1> </h1>
-                <footer class="footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-3 m-b-30">
-                                <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    About us
-                                </div>
-                                <p class="white-text">
-                                    Lorem Ipsum.
-                                </p>
-                            </div>
-                            <div class="col-md-3 m-b-30">
-                                <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    Latest themes
-                                </div>
-                                <div class="footer-links">
-                                    <a href="#">
-                                        Appointment
-                                    </a>
-                                    <a href="#">
-                                        Health center
-                                    </a>
-                                    <a href="#">
-                                        Quality
-                                    </a>
-                                    <a href="#">
-                                        Wallstreet
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-3 m-b-30">
-                                <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    Quick Links
-                                </div>
-                                <div class="footer-links">
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                    <a href="#">
-                                        FAQ
-                                    </a>
-                                    <a href="#">
-                                        Terms & conditions
-                                    </a>
-                                    <a href="#">
-                                        Privacy policy
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-3 m-b-30">
-                                <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    Support
-                                </div>
-                                <div class="footer-links">
-                                    <a href="#">
-                                        Affiliate
-                                    </a>
-                                    <a href="#">
-                                        Login
-                                    </a>
-                                    <a href="#">
-                                        All theme package
-                                    </a>
-                                    <a href="#">
-                                        Support forum
-                                    </a>
-                                </div>
+    	<!-- footer -->
 
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
-    </div>
 
+		<div class="container-fluid foot">
+			<div class="row">
+				<div class="col-md-12">
+					<h1> </h1>
+					<footer class="footer">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-3 m-b-30">
+									<div class="footer-title m-t-5 m-b-20 p-b-8">
+										Social Media
+									</div>
+									<div class="social-icons">
+										<a href="#"><i class="fa fa-facebook"></i></a>&nbsp;
+										<a href="#"><i class="fa fa-twitter"></i></a>&nbsp;
+										<a href="#"><i class="fa fa-instagram"></i></a>&nbsp;
+										<a href="#"><i class="fa fa-linkedin"></i></a><hr>
+										<a href="#"   style="font-size: smaller;">
+										&copy; 2023 EverythingOnRent. All rights reserved.
+
+										</a>
+
+									</div>
+								</div>
+								<div class="col-md-3 m-b-30">
+									<div class="footer-title m-t-5 m-b-20 p-b-8">
+										Useful Links
+									</div>
+									<div class="footer-links">
+										<a href="About.php">
+											About us
+										</a>
+										<a href="Contact.php">
+											Contact us
+										</a>
+
+
+									</div>
+								</div>
+								<div class="col-md-3 m-b-30">
+									<div class="footer-title m-t-5 m-b-20 p-b-8">
+										General Links
+									</div>
+									<div class="footer-links">
+
+										<a href="Terms.php">
+											Terms & conditions
+										</a>
+										<a href="Privacy.php">
+											Privacy policy
+										</a>
+									</div>
+								</div>
+								<div class="col-md-3 m-b-30">
+									<div class="footer-title m-t-5 m-b-20 p-b-8">
+										Links
+									</div>
+									<div class="footer-links">
+										<a href="SignUp.php">
+											SignUp
+										</a>
+										<a href="#">
+											Login
+										</a>
+
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+		</div>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

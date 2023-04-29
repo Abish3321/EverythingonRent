@@ -1,11 +1,8 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "everything");
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+include 'dbconn.php';
 
 $sql = "SELECT * FROM users WHERE user_type = 'renter'";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($mysqli, $sql);
 ?>
 
 
@@ -217,7 +214,7 @@ $result = mysqli_query($conn, $sql);
 
       #tabedit {
         overflow-y: scroll;
-        height: 80%;
+        height: 70%;
         margin-top: 15px;
         overflow-x: scroll;
       }
@@ -297,9 +294,8 @@ $result = mysqli_query($conn, $sql);
             <li>
 
             <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
-            <li> <a href="Ad.php"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Ads</a></li>
             <li> <a href="Provider.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
-            <li class="active"><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(renter)</a></li>
+            <li class="active"><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(Renter)</a></li>
             <li> <a href="Rented.php"><i class="glyphicon glyphicon-transfer"></i>&nbsp;rented Items</a></li>
           </ul>
         </div>
@@ -339,7 +335,7 @@ $result = mysqli_query($conn, $sql);
           <div id="tabedit" class="table-responsive">
             <table class="table table-bordered table-striped">
               <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
-              <thead>
+              <thead style="position:sticky;top: 0;background-color:#283866; color:white;">
                 <tr>
                   <th>User Id</th>
                   <th>User Type</th>

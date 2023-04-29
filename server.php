@@ -48,9 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			echo "<script>window.location.href='Signup.php';</script>";
 			exit;
 		}
-
+		$user_verif ='0';
+		if ($user_type == 'provider') {
+			$user_verif = '0';
+		} else{
+			$user_verif = '1';
+		}
 		$pwd = md5($password_1);
-		$sql = "INSERT INTO users (user_type, name, email, phone_number, address, doctype, document, username, pwd) VALUES ('$user_type', '$name', '$email', '$phone_number','$address', '$doctype', '$document', '$username', '$pwd')";
+		$sql = "INSERT INTO users (user_verif, user_type, name, email, phone_number, address, doctype, document, username, pwd) VALUES ('$user_verif','$user_type', '$name', '$email', '$phone_number','$address', '$doctype', '$document', '$username', '$pwd')";
 
 		if (mysqli_query($mysqli, $sql)) {
 			echo "<script>alert('Registration Successful!')</script>";
@@ -125,24 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 //send request from details.php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (isset($_POST['send_request'])) {
-		$username = $_SESSION['username'];
-		$sql = "SELECT user_id FROM users WHERE username = '$username'";
-		$result = mysqli_query($mysqli, $sql);
-		$row = mysqli_fetch_assoc($result);
-		$userid = $row['user_id'];
-		$itemid = $_POST['itemid'];
-		$startDate = $_POST['start_date'];
-		$endDate = $_POST['end_date'];
 
-		$sql = "INSERT INTO requests (user_id, item_id, startDate, endDate) VALUES ('$userid', '$itemid', '$startDate', '$endDate')";
-		if (mysqli_query($mysqli, $sql)) {
-			echo "<script> alert('Request Send Successfully');  
-            window.location = 'details.php?id=$itemid'; </script>";
-		}
-	}
-}
 
 
 

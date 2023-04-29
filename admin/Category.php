@@ -394,7 +394,6 @@ include('dbconn.php');
             <li>
 
             <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
-            <li> <a href="Ad.php"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Ads</a></li>
             <li> <a href="Provider.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
             <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(Renter)</a></li>
             <li> <a href="Rented.php"><i class="glyphicon glyphicon-transfer"></i>&nbsp;rented Items</a></li>
@@ -458,7 +457,7 @@ include('dbconn.php');
           <div id="tabedit" class="table-responsive">
             <table class="table table-bordered table-striped">
               <!-- Add the 'table-bordered' and 'table-striped' classes for styling -->
-              <thead>
+              <thead style="position:sticky;top: 0;background-color:#283866; color:white;">
                 <tr>
                   <th>S No.</th>
                   <th>Category Id</th>

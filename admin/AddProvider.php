@@ -304,7 +304,6 @@ include('Category_data.php');
                         <li>
 
                         <li> <a href="Item.php"><i class="glyphicon glyphicon-shopping-cart"></i>&nbsp;Items</a></li>
-                        <li> <a href="Ad.php"><i class="glyphicon glyphicon-bullhorn"></i>&nbsp;Ads</a></li>
                         <li class="active"> <a href="Provider.php"><i
                                     class="glyphicon glyphicon-user"></i>&nbsp;Providers</a></li>
                         <li><a href="User.php"><i class="glyphicon glyphicon-user"></i>&nbsp;Users(Renter)</a></li>
@@ -317,23 +316,22 @@ include('Category_data.php');
 
 
             <div class="Profile">
-                <div class="container">
+                <div class="container" style="width:1100px; padding-top:30px;">
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <div class="panel panel-default">
                                 <div class="panel-heading" style="background-color: #07103e; color:white;">
-                                    <h2 class=" panel-title">Provider Profile</h2>
+                                    <h2 class=" panel-title">Add Provider</h2>
                                 </div>
                                 <div class="panel-body">
                                     <div class="col-md-6">
                                         <form action="Category_data.php" method="POST"  enctype="multipart/form-data">
 
                                             <div class="form-group">
-                                                <input type="radio" id="usrttype" name="user_type" value="provider"
+                                                <input type="hidden" id="usrttype" name="user_type" value="provider"
                                                     required>
-                                                <label for="provider">&nbsp;Provider</label>&nbsp;&nbsp;&nbsp;
-                                                <input type="radio" id="usrttype" name="user_type" value="renter">
-                                                <label for="renter">&nbsp;Renter</label>
+                                                
+                                                
                                             </div>
                                       
                                             <div class="form-group">
