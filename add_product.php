@@ -21,7 +21,7 @@
 <style>
     .broom,
     .broo:hover {
-        background-color: #07103e;
+        background-color: #8B0000;
         border-color: white;
         color: white;
     }
@@ -29,7 +29,6 @@
     .broom:hover,
     .broo {
         background-color: white;
-        border-color: #07103e;
         color: #07103e;
 
     }
@@ -54,13 +53,13 @@
 				font-size:large;
 			}
         .foot {
-            background-color: #07103e;
+            background-color: #8B0000;        
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background-color: #8B0000;
             color: #fff;
         }
 
@@ -170,7 +169,7 @@
         <div class="container" style="padding:50px;">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2" style="padding-top: 40px;">
-                    <div class="panel-heading" style="background-color: #07103e; color:white; padding: 1px 0px;">
+                    <div class="panel-heading" style="background-color:#f2dede; color:#8B0000; padding: 1px 0px;">
                         <div class="log-align-center" style="font-size:25px; text-align:center;">
                             <h2>Add Products</h2>
                         </div>

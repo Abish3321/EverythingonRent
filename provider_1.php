@@ -16,10 +16,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        .social-icons a{
-				color: white;
-				font-size:large;
-			}
         .jumbotron {
             background: url('images/Provider5.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -28,26 +24,19 @@
 
         }
 
-        .broom {
-            background-color: #07103e;
-            border-color: white;
+        .social-icons a {
             color: white;
-        }
-
-        .broom:hover {
-            background-color: white;
-            border-color: #07103e;
-            color: #07103e;
+            font-size: large;
         }
 
         .foot {
-            background-color: #07103e;
+            background-color: #8B0000;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background-color: #8B0000;
             color: #fff;
         }
 
@@ -130,14 +119,13 @@
         h4 {
             padding-left: 10px;
         }
-
     </style>
 </head>
 
 <body>
 
     <?php include 'header.php'; ?>
-    
+
     <!-- /.container -->
     <div class="container request" style="padding-top: 80px;">
         <div class="col-xs-12 col-md-12">
@@ -186,7 +174,7 @@
                     <a style="width:95%;" class="btn btn-default btn-lg  broom" href="add_product.php" role="button">Add Products </a>
                 </div>
                 <hr>
-                
+
 
             </div>
             <div class="col-xs-12 col-md-5">
@@ -194,9 +182,9 @@
                 <div class="about-desc">
 
                     <p><strong>Welcome to our platform for renting out your items! Do you have things lying around
-                        your home that you rarely use? Why not make some extra cash by renting them out to
-                        people who need them? Our platform makes it easy for you to connect with people who are
-                        looking to rent items like yours!</strong></p>
+                            your home that you rarely use? Why not make some extra cash by renting them out to
+                            people who need them? Our platform makes it easy for you to connect with people who are
+                            looking to rent items like yours!</strong></p>
                 </div>
             </div>
 
@@ -208,83 +196,84 @@
     <!-- footer -->
 
 
-    	<!-- footer -->
+    <!-- footer -->
 
 
-		<div class="container-fluid foot">
-			<div class="row">
-				<div class="col-md-12">
-					<h1> </h1>
-					<footer class="footer">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										Social Media
-									</div>
-									<div class="social-icons">
-										<a href="#"><i class="fa fa-facebook"></i></a>&nbsp;
-										<a href="#"><i class="fa fa-twitter"></i></a>&nbsp;
-										<a href="#"><i class="fa fa-instagram"></i></a>&nbsp;
-										<a href="#"><i class="fa fa-linkedin"></i></a><hr>
-										<a href="#"   style="font-size: smaller;">
-										&copy; 2023 EverythingOnRent. All rights reserved.
+    <div class="container-fluid foot">
+        <div class="row">
+            <div class="col-md-12">
+                <h1> </h1>
+                <footer class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 m-b-30">
+                                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                                    Social Media
+                                </div>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-twitter"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-instagram"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    <hr>
+                                    <a href="#" style="font-size: smaller;">
+                                        &copy; 2023 EverythingOnRent. All rights reserved.
 
-										</a>
+                                    </a>
 
-									</div>
-								</div>
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										Useful Links
-									</div>
-									<div class="footer-links">
-										<a href="About.php">
-											About us
-										</a>
-										<a href="Contact.php">
-											Contact us
-										</a>
-
-
-									</div>
-								</div>
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										General Links
-									</div>
-									<div class="footer-links">
-
-										<a href="Terms.php">
-											Terms & conditions
-										</a>
-										<a href="Privacy.php">
-											Privacy policy
-										</a>
-									</div>
-								</div>
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										Links
-									</div>
-									<div class="footer-links">
-										<a href="SignUp.php">
-											SignUp
-										</a>
-										<a href="#">
-											Login
-										</a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 m-b-30">
+                                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                                    Useful Links
+                                </div>
+                                <div class="footer-links">
+                                    <a href="About.php">
+                                        About us
+                                    </a>
+                                    <a href="Contact.php">
+                                        Contact us
+                                    </a>
 
 
-									</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 m-b-30">
+                                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                                    General Links
+                                </div>
+                                <div class="footer-links">
 
-								</div>
-							</div>
-						</div>
-					</footer>
-				</div>
-			</div>
-		</div>
+                                    <a href="Terms.php">
+                                        Terms & conditions
+                                    </a>
+                                    <a href="Privacy.php">
+                                        Privacy policy
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 m-b-30">
+                                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                                    Links
+                                </div>
+                                <div class="footer-links">
+                                    <a href="SignUp.php">
+                                        SignUp
+                                    </a>
+                                    <a href="#">
+                                        Login
+                                    </a>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

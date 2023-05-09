@@ -25,13 +25,13 @@
 				font-size:large;
 			}
         .foot {
-            background-color: #07103e;
+			background-color: #8B0000;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background-color: #8B0000;
             color: #fff;
         }
 
@@ -141,7 +141,7 @@
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1" style="padding-top: 30px;" >
 					<div class="panel panel-default">
-						<div class="panel-heading" style="background-color: #07103e; color:white;">
+						<div class="panel-heading" style="background-color: #f2dede; color:#8B0000;">
 							<h2 class=" panel-title">My Profile</h2>
 						</div>
 						<div class="panel-body">
@@ -203,6 +203,7 @@
 									<label for="zip_code">Zip Code</label>
 									<input type="text" class="form-control" id="zip_code" name="zip_code" value="<?php echo $user_data['zip_code'] ?>">
 								</div>
+								
 								<input type="submit"  class="btn btn-default form-control broom" name="update" value="Update">
 								
 								</form>

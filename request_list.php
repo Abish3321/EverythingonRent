@@ -11,18 +11,19 @@
     <title>Document</title>
 
     <style>
-        .social-icons a{
-				color: white;
-				font-size:large;
-			}
+        .social-icons a {
+            color: white;
+            font-size: large;
+        }
+
         .foot {
-            background-color: #07103e;
+            background-color: #8B0000;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background-color: #8B0000;
             color: #fff;
         }
 
@@ -67,6 +68,7 @@
             background: #07103e;
 
         }
+
         .modal-backdrop {
             z-index: 0 !important;
         }
@@ -75,6 +77,27 @@
 
 <body>
     <?php include 'header.php' ?>
+
+    <!-- cancel request code -->
+    <?php
+    if (isset($_POST['cancelreq'])) {
+        $reqid = $_POST['request_id'];
+
+        // Perform database query to delete the request with the given ID
+        $query = "DELETE FROM requests WHERE req_id = $reqid";
+        $result = mysqli_query($mysqli, $query);
+
+        if (!$result) {
+            // Handle query error
+            echo "Error deleting request: " . mysqli_error($mysqli);
+        } else {
+            // Redirect back to the page displaying the list of requests
+            header("Location: view_requests.php");
+            exit();
+        }
+    }
+
+    ?>
 
     <div class="container" style="padding-top: 55px;">
         <h1 class="text-center">List of Requests</h1>
@@ -92,6 +115,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 <?php
 
                 $username = $_SESSION['username'];
@@ -137,9 +161,9 @@
                             WHERE r.req_id = $reqid;";
                             $result = mysqli_query($mysqli, $sql);
                             $row_provider = mysqli_fetch_row($result);
-                            $name=$row['name'];
-                            $email=$row['email'];
-                            $phone=$row['phone_number'];
+                            $name = $row['name'];
+                            $email = $row['email'];
+                            $phone = $row['phone_number'];
                             // select item_id from requests where req_id =reqid;
                             // select user_id from items where item_id = 'item_id';
                             // select user_id from users where user_id = 'user_id';
@@ -190,11 +214,33 @@
                         echo "</td>";
                         echo "<td>
                                 <div class='btn-group' role='group'>
-                                    <button type='button' class='btn btn-danger'>Cancel</button>
-                                    <a href='view_req.php?id= " . $reqid . "' class='btn btn-info'> View</a>
+                                    <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#cancelrequest'>Cancel</button>
+                                    <a href='view_req.php?id= " . $reqid . "' class='btn btn-info'>View</a>
                                 </div>
                             </td>";
                         echo "</tr>";
+
+                        //<!-- Modal for request cancellation confirmation -->
+                        echo "<div class='modal fade' id='cancelrequest' tabindex='-1' role='dialog' aria-labelledby='cancelrequestLabel'>";
+                        echo "  <div class='modal-dialog' role='document'>";
+                        echo "    <div class='modal-content'>";
+                        echo "      <div class='modal-header'>";
+                        echo "        <h4 class='modal-title' id='cancelrequestLabel'>Cancel Request Confirmation</h4>";
+                        echo "        <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+                        echo "      </div>";
+                        echo "      <div class='modal-body'>";
+                        echo "        <p>Are you sure you want to cancel this request?</p>";
+                        echo "      </div>";
+                        echo "      <div class='modal-footer'>";
+                        echo "      <input type='hidden' name='request_id' value='$reqid'>";
+                        echo "        <button type='button' class='btn btn-default' data-dismiss='modal'>No</button>";
+                        echo "        <button name='cancelreq' class='btn btn-danger'>Yes</button>";
+                        echo "      </div>";
+                        echo "    </div>";
+                        echo "  </div>";
+
+                        echo "</div>";
+
                         $serialNo++;
                     }
                 } else {
@@ -208,83 +254,82 @@
     </div>
 
 
-    	<!-- footer -->
+    <!-- footer -->
+    <div class="container-fluid foot" style="margin-top:83px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h1> </h1>
+                <footer class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3 m-b-30">
+                                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                                    Social Media
+                                </div>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-twitter"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-instagram"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    <hr>
+                                    <a href="#" style="font-size: smaller;">
+                                        &copy; 2023 EverythingOnRent. All rights reserved.
+
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3 m-b-30">
+                                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                                    Useful Links
+                                </div>
+                                <div class="footer-links">
+                                    <a href="About.php">
+                                        About us
+                                    </a>
+                                    <a href="Contact.php">
+                                        Contact us
+                                    </a>
 
 
-        <div class="container-fluid foot" style="margin-top:50px;">
-			<div class="row">
-				<div class="col-md-12">
-					<h1> </h1>
-					<footer class="footer">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										Social Media
-									</div>
-									<div class="social-icons">
-										<a href="#"><i class="fa fa-facebook"></i></a>&nbsp;
-										<a href="#"><i class="fa fa-twitter"></i></a>&nbsp;
-										<a href="#"><i class="fa fa-instagram"></i></a>&nbsp;
-										<a href="#"><i class="fa fa-linkedin"></i></a><hr>
-										<a href="#"   style="font-size: smaller;">
-										&copy; 2023 EverythingOnRent. All rights reserved.
+                                </div>
+                            </div>
+                            <div class="col-md-3 m-b-30">
+                                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                                    General Links
+                                </div>
+                                <div class="footer-links">
 
-										</a>
-
-									</div>
-								</div>
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										Useful Links
-									</div>
-									<div class="footer-links">
-										<a href="About.php">
-											About us
-										</a>
-										<a href="Contact.php">
-											Contact us
-										</a>
+                                    <a href="Terms.php">
+                                        Terms & conditions
+                                    </a>
+                                    <a href="Privacy.php">
+                                        Privacy policy
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3 m-b-30">
+                                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                                    Links
+                                </div>
+                                <div class="footer-links">
+                                    <a href="SignUp.php">
+                                        SignUp
+                                    </a>
+                                    <a href="#">
+                                        Login
+                                    </a>
 
 
-									</div>
-								</div>
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										General Links
-									</div>
-									<div class="footer-links">
+                                </div>
 
-										<a href="Terms.php">
-											Terms & conditions
-										</a>
-										<a href="Privacy.php">
-											Privacy policy
-										</a>
-									</div>
-								</div>
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										Links
-									</div>
-									<div class="footer-links">
-										<a href="SignUp.php">
-											SignUp
-										</a>
-										<a href="#">
-											Login
-										</a>
-
-
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</footer>
-				</div>
-			</div>
-		</div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

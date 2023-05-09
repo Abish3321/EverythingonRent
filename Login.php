@@ -1,3 +1,4 @@
+<?php include 'server.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,23 +14,21 @@
 
 
 	<style>
-		.broom {
-			background-color: #07103e;
-			border-color: white;
-			color: white;
+		.btn.btn-default.broom {
+			background-color: #ffd700;
+			border: none;
+			color: #232f3e;
 		}
 
-		.broom:hover {
-			background-color: white;
-			border-color: #07103e;
-			color: #07103e;
-
+		.btn.btn-default.broom:hover {
+			background-color: #232f3e;
+			color: #ffd700;
 		}
 
 		body {
 
-			padding-top: 80px;
-			padding-bottom: 80px;
+			padding-top: 120px;
+			padding-bottom: inherit;
 			background: url('images/form22.jpg') no-repeat center center fixed;
 			background-size: cover;
 
@@ -49,7 +48,7 @@
 		}
 
 		.navbar-default {
-			background-color: #07103e;
+			background-color: #8B0000;
 			border-color: #2e6da4;
 		}
 
@@ -64,14 +63,31 @@
 		.navbar-default .navbar-nav>li>a:hover,
 		.navbar-default .navbar-nav>li>a:focus {
 			background-color: #fff;
-			color: #07103e;
+			color: #8B0000;
 		}
 
 		.navbar-default .navbar-nav>.active>a,
 		.navbar-default .navbar-nav>.active>a:hover,
 		.navbar-default .navbar-nav>.active>a:focus {
 			background-color: #fff;
-			color: #07103e;
+			color: #8B0000;
+		}
+
+		.choose {
+			border-color: #8B0000;
+			background-color: white;
+			color: #8B0000;
+		}
+
+		.choose:hover {
+			border-color: #8B0000;
+			background-color: #8B0000;
+			color: white;
+		}
+
+		label.btn.btn-default.choose.active {
+			background-color: #8B0000;
+			color: white;
 		}
 	</style>
 
@@ -91,12 +107,11 @@
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="Home.php"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
+					<li><input type="hidden"></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
 
 	<!-- login -->
 	<div class="login">
@@ -104,23 +119,32 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<div class="panel panel-default">
-						<div class="panel-heading" style="background-color: #07103e; color:white;">
+						<div class="panel-heading" style="background-color: #8B0000; color:white;">
 							<div class="log" style="font-size:25px; text-align:center;">
 								<img src="images/logo.png" width="100">
 							</div>
 						</div>
 						<div class="panel-body">
 							<h2 class="panel-title" style="font-size:25px; font-weight:bold;text-align:center;">Login</h2>
+							<?php if (isset($_GET['error'])) : ?>
+									<div class="alert alert-danger">
+										<?php echo $_GET['error']; ?>
+									</div>
+									<meta http-equiv="refresh" content="4;url=Login.php">
+								<?php endif; ?>
 							<form action="server.php" method="POST">
+								
+								<div class="btn-group" data-toggle="buttons">
+									<label class="btn btn-default choose">
+										<input type="radio" id="usrttype" name="user_type" value="provider" autocomplete="off" checked> Provider
+									</label>
+									<label class="btn btn-default choose">
+										<input type="radio" id="usrttype" name="user_type" value="renter" autocomplete="off"> Renter
+									</label>
+								</div><br><br>
 								<div class="form-group">
-									<input type="radio" id="usrttype" name="user_type" value="provider" required>
-									<label for="provider">&nbsp;Provider</label>&nbsp;&nbsp;&nbsp;
-									<input type="radio" id="usrttype" name="user_type" value="renter">
-									<label for="renter">&nbsp;Renter</label>
-								</div>
-								<div class="form-group">
-									<label for="login-email">Email</label>
-									<input type="email" name="username" class="form-control" id="login-email" placeholder="Enter email/username	">
+									<label for="login-email">Username</label>
+									<input type="text" name="username" class="form-control" id="login-email" placeholder="Enter email/username	">
 								</div>
 								<div class="form-group">
 									<label for="reg-password">Password</label>
@@ -130,11 +154,10 @@
 									</div>
 								</div>
 
-								<button type="submit" name="login" class="btn btnbtn btn-default broom">Submit</button>
+								<button type="submit" name="login" class="btn btnbtn btn-default broom">Submit</button> &nbsp;&nbsp;<a href="Forget.php">Forgot Password? </a>&nbsp;&nbsp;If you forgot your password
 								<br>
-								<p><a href="Forget.php">Forgot Password?</a>If you forgot your password</p>
 
-								<p>Don't have an account? <a href="SignUp.php">Create an Account</a></p>
+								<p>Don't have an account? <a href="SignUp.php">&nbsp;&nbsp;Create an Account</a></p>
 							</form>
 						</div>
 					</div>
@@ -152,10 +175,7 @@
 			togglePassword.classList.toggle('glyphicon-eye-open');
 			togglePassword.classList.toggle('glyphicon-eye-close');
 		});
-
-		
 	</script>
-
 
 
 	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>

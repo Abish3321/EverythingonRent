@@ -423,8 +423,8 @@ color: white;
         <p>Are you sure you want to delete this item?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default btnedit" data-dismiss="modal"></i> Cancel</button>
-        <button type="button" class="btn btn-default btnedit"> Delete</button>
+        <button type="button" class="btn btn-default btnedit" data-dismiss="modal"></i> No</button>
+        <button type="button" class="btn btn-default btnedit"> Yes</button>
       </div>
     </div>
   </div>

@@ -1,3 +1,10 @@
+<html>
+	<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+	</head> 
+<body>
 <?php
 include 'dbconn.php';
 //include 'auth.php';
@@ -48,10 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			echo "<script>window.location.href='Signup.php';</script>";
 			exit;
 		}
-		$user_verif ='0';
+		$user_verif = '0';
 		if ($user_type == 'provider') {
 			$user_verif = '0';
-		} else{
+		} else {
 			$user_verif = '1';
 		}
 		$pwd = md5($password_1);
@@ -79,7 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // 	header('location: index.php');
 // }
 
-//User Login 
+
+// User Login 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (isset($_POST['login'])) {
 		// Retrieve form data
@@ -88,10 +96,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$password = $_POST['password'];
 
 		// Validate form data
-		if (empty($user_type) || empty($identifier) || empty($password)) {
+		if (empty($user_type) && empty($identifier) || empty($password)) {
 			// Display error message for missing fields
-			echo "<script>alert('Empty Fields')</script>";
-			echo "<script>window.location.href='Login.php';</script>";
+			header("Location: Login.php?error=Please fill all fields");
+			exit();
+		}
+
+		if (empty($user_type) && empty($identifier)) {
+			// Display error message for missing fields
+			header("Location: Login.php?error=Please fill username and select usertype");
+			exit();
+		}
+		if (empty($user_type) && empty($password)) {
+			// Display error message for missing fields
+			header("Location: Login.php?error=Please fill password and select usertype");
+			exit();
+		}
+		if (empty($identifier) && empty($password)) {
+			// Display error message for missing fields
+			header("Location: Login.php?error=Please fill username and password field");
+			exit();
+		}
+		if (empty($password)) {
+			// Display error message for missing fields
+			header("Location: Login.php?error=Please Fill Password field");
 			exit();
 		}
 
@@ -109,6 +137,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			// Login success, store user data in session and redirect to dashboard
 			$user_data = mysqli_fetch_assoc($result);
 
+			
+
+			if ($user_data['user_type'] != $user_type) {
+				// Display error message for incorrect user type
+				echo "<script>alert('Incorrect user type')</script>";
+				echo "<script>window.location.href='Login.php';</script>";
+				exit();
+			}
+
+			if ($user_data['username'] != $identifier && $user_data['email'] != $identifier) {
+				// Display error message for incorrect username or email
+				echo "<script>alert('Incorrect username or email')</script>";
+				echo "<script>window.location.href='Login.php';</script>";
+				exit();
+			}
+
+			if ($user_data['pwd'] != $pwd) {
+				// Display error message for incorrect password
+				echo "<script>alert('Incorrect password')</script>";
+				echo "<script>window.location.href='Login.php';</script>";
+				exit();
+			}
+
+			// All validations passed, store user data in session and redirect to dashboard
 			$_SESSION['username'] = $user_data['username'];
 			$_SESSION['is_login'] = true;
 			$_SESSION['email'] = $user_data['email'];
@@ -120,12 +172,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			}
 			exit();
 		} else {
-			// Login failed, display error message
-			header('Location: Login.php?error=invalid_credentials');
-			exit();
+
+			// Invalid credentials, show error message using SweetAlert
+			echo "<script>
+						swal({
+							title: 'Error',
+							text: 'Invalid usertype or username or password',
+							icon: 'error',
+							timer: 2000,
+							showConfirmButton: false
+						});
+						setTimeout(function(){
+							window.location.href = 'Login.php';
+						}, 2000);
+					  </script>";
 		}
 	}
 }
+
+
 
 
 
@@ -144,3 +209,6 @@ if (isset($_GET['logout'])) {
 	unset($_SESSION['is_login']);
 	header('location: Login.php');
 }
+?>
+</body>
+</html>

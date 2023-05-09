@@ -10,6 +10,8 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
     <link rel="shortcut icon" href="fonts/glyphicons-halflings-regular.eot" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
         .broom {
@@ -29,14 +31,19 @@
             margin-left: 20px;
         }
 
+        .social-icons a {
+            color: white;
+            font-size: large;
+        }
+
         .foot {
-            background-color: #07103e;
+            background-color: #8B0000;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background-color: #8B0000;
             color: #fff;
         }
 
@@ -71,6 +78,8 @@
             color: #2e6da4;
         }
 
+
+
         .footer-bottom {
             width: 100%;
             padding: 25px 0;
@@ -83,7 +92,7 @@
 
 <body>
 
-        <?php include 'header.php';?>
+    <?php include 'header.php'; ?>
     <?php
 
     // Check if the id parameter is present in the query string
@@ -107,13 +116,13 @@
                 $filename = $_FILES['image']['name'];
                 $tempname = $_FILES['image']['tmp_name'];
                 $folder = "ads/";
-            
+
                 // Move the uploaded file to the designated folder
                 move_uploaded_file($tempname, $folder . $filename);
-              } else {
+            } else {
                 // $user_data should contain the user's current profile data
                 $filename = $_POST['old_image'];
-              }
+            }
 
 
             // Update the item in the database
@@ -137,7 +146,7 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 Edit Details" style="padding-top: 60px" ;>
                     <div class="panel panel-default">
-                        <div class="panel-heading" style="background-color: #07103e; color:white;">
+                        <div class="panel-heading" style="background-color: #f2dede; color:#8b0000;">
                             <h2 class="panel-title text-center">Edit Details</h2>
                         </div>
                         <div class="panel-body">
@@ -146,9 +155,8 @@
                                     <div class="form-group">
                                         <label for="image">Image:</label><br>
                                         <img class="item-img img-fluid" width="60%" src="ads/<?php echo $row['item_img']; ?>" alt="<?php echo $row['item_img']; ?>">
-                                        <input type="file" class="form-control-file" id="image" name="image" >
+                                        <input type="file" class="form-control-file" id="image" name="image">
                                         <input type="hidden" class="form-control-file" id="image" name="old_image" value="<?php echo $row['item_img']; ?>">
-                                        
                                     </div>
                                     <div class="form-group">
                                         <label>Item Name:</label>
@@ -177,7 +185,7 @@
                                     </div>
 
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
-                                        <button type ="submit" style="width:40%;" class="btn btn-default broom" name="save_update" value="Save Updations">Update</button>
+                                        <button type="submit" style="width:40%;" class="btn btn-default broom" name="save_update" value="Save Updations">Update</button>
                                     </div>
                                 </div>
 
@@ -223,67 +231,63 @@
                         <div class="row">
                             <div class="col-md-3 m-b-30">
                                 <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    About us
+                                    Social Media
                                 </div>
-                                <p class="white-text">
-                                    Lorem Ipsum.
-                                </p>
-                            </div>
-                            <div class="col-md-3 m-b-30">
-                                <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    Latest themes
-                                </div>
-                                <div class="footer-links">
-                                    <a href="#">
-                                        Appointment
+                                <div class="social-icons">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-twitter"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-instagram"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    <hr>
+                                    <a href="#" style="font-size: smaller;">
+                                        &copy; 2023 EverythingOnRent. All rights reserved.
+
                                     </a>
-                                    <a href="#">
-                                        Health center
-                                    </a>
-                                    <a href="#">
-                                        Quality
-                                    </a>
-                                    <a href="#">
-                                        Wallstreet
-                                    </a>
+
                                 </div>
                             </div>
                             <div class="col-md-3 m-b-30">
                                 <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    Quick Links
+                                    Useful Links
                                 </div>
                                 <div class="footer-links">
-                                    <a href="#">
-                                        Blog
+                                    <a href="About.php">
+                                        About us
                                     </a>
-                                    <a href="#">
-                                        FAQ
+                                    <a href="Contact.php">
+                                        Contact us
                                     </a>
-                                    <a href="#">
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-3 m-b-30">
+                                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                                    General Links
+                                </div>
+                                <div class="footer-links">
+
+                                    <a href="Terms.php">
                                         Terms & conditions
                                     </a>
-                                    <a href="#">
+                                    <a href="Privacy.php">
                                         Privacy policy
                                     </a>
                                 </div>
                             </div>
                             <div class="col-md-3 m-b-30">
                                 <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    Support
+                                    Links
                                 </div>
                                 <div class="footer-links">
-                                    <a href="#">
-                                        Affiliate
+                                    <a href="SignUp.php">
+                                        SignUp
                                     </a>
                                     <a href="#">
                                         Login
                                     </a>
-                                    <a href="#">
-                                        All theme package
-                                    </a>
-                                    <a href="#">
-                                        Support forum
-                                    </a>
+
+
                                 </div>
 
                             </div>

@@ -29,58 +29,54 @@
 
         }
 
-        .foot {
-            background-color: #07103e;
-        }
+        /* Footer */
+		.footer {
+			background-color: #8B0000;
+			padding: 30px 0;
+			font-size: 14px;
+		}
 
-        .footer {
-            padding: 60px 0;
-            width: 100%;
-            background: #07103e;
-            color: #fff;
-        }
+		.footer-title {
+			font-weight: 600;
+			margin-bottom: 10px;
+			color: #fff;
+		}
 
-        .footer-title {
-            position: relative;
-            color: #fff;
-            font-size: 24px;
-            font-weight: 600;
-            margin-top: 5px;
-            margin-bottom: 20px;
-        }
+		.social-icons a {
+			display: inline-block;
+			width: 32px;
+			height: 32px;
+			line-height: 32px;
+			text-align: center;
+			color: #fff;
+			background-color: #333;
+			border-radius: 50%;
+			margin-right: 10px;
+			margin-bottom: 10px;
+		}
 
-        .footer-title:after {
-            position: absolute;
-            content: '';
-            left: 0;
-            bottom: 0;
-            width: 30px;
-            height: 4px;
-            background: white;
-        }
+		.social-icons a:hover {
+			background-color: #428bca;
+			color: #fff;
 
-        .footer-links a {
-            padding: 10px 0;
-            color: #fff;
-            display: block;
-            transition: color 0.5s ease-in-out;
-            text-decoration: none;
-        }
+		}
 
-        .footer-links a:hover {
-            color: #2e6da4;
-        }
+		.footer-links a {
+			display: block;
+			margin-bottom: 10px;
+			color: #fff;
+			text-decoration: none;
+		}
 
+		.footer-links a:hover {
+			color: #fff;
+		}
 
-
-        .footer-bottom {
-            width: 100%;
-            padding: 25px 0;
-            text-align: center;
-            color: #fff;
-            background: #07103e;
-
-        }
+		.footer hr {
+			margin: 10px 0;
+			border: none;
+			border-top: 1px solid #ccc;
+		}
 
         .thumb {
             margin-right: 20px;
@@ -163,82 +159,78 @@
 
 
     	<!-- footer -->
-
-
-		<div class="container-fluid foot">
+        <footer class="footer">
+		<div class="container">
 			<div class="row">
-				<div class="col-md-12">
-					<h1> </h1>
-					<footer class="footer">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										Social Media
-									</div>
-									<div class="social-icons">
-										<a href="#"><i class="fa fa-facebook"></i></a>&nbsp;
-										<a href="#"><i class="fa fa-twitter"></i></a>&nbsp;
-										<a href="#"><i class="fa fa-instagram"></i></a>&nbsp;
-										<a href="#"><i class="fa fa-linkedin"></i></a><hr>
-										<a href="#"   style="font-size: smaller;">
-										&copy; 2023 EverythingOnRent. All rights reserved.
-
-										</a>
-
-									</div>
-								</div>
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										Useful Links
-									</div>
-									<div class="footer-links">
-										<a href="About.php">
-											About us
-										</a>
-										<a href="Contact.php">
-											Contact us
-										</a>
+				<div class="col-md-3 m-b-30">
+					<div class="footer-title m-t-5 m-b-20 p-b-8">
+						Social Media
+					</div>
+					<div class="social-icons">
+						<a href="#"><i class="fa fa-facebook"></i></a>&nbsp;
+						<a href="#"><i class="fa fa-twitter"></i></a>&nbsp;
+						<a href="#"><i class="fa fa-instagram"></i></a>&nbsp;
+						<a href="#"><i class="fa fa-linkedin"></i></a>
+						<hr>
 
 
-									</div>
-								</div>
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										General Links
-									</div>
-									<div class="footer-links">
-
-										<a href="Terms.php">
-											Terms & conditions
-										</a>
-										<a href="Privacy.php">
-											Privacy policy
-										</a>
-									</div>
-								</div>
-								<div class="col-md-3 m-b-30">
-									<div class="footer-title m-t-5 m-b-20 p-b-8">
-										Links
-									</div>
-									<div class="footer-links">
-										<a href="SignUp.php">
-											SignUp
-										</a>
-										<a href="#">
-											Login
-										</a>
+					</div>
+				</div>
+				<div class="col-md-3 m-b-30">
+					<div class="footer-title m-t-5 m-b-20 p-b-8">
+						Useful Links
+					</div>
+					<div class="footer-links">
+						<a href="About.php">
+							About us
+						</a>
+						<a href="Contact.php">
+							Contact us
+						</a>
 
 
-									</div>
+					</div>
+				</div>
+				<div class="col-md-3 m-b-30">
+					<div class="footer-title m-t-5 m-b-20 p-b-8">
+						General Links
+					</div>
+					<div class="footer-links">
 
-								</div>
-							</div>
-						</div>
-					</footer>
+						<a href="Terms.php">
+							Terms & conditions
+						</a>
+						<a href="Privacy.php">
+							Privacy policy
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3 m-b-30">
+					<div class="footer-title m-t-5 m-b-20 p-b-8">
+						Links
+					</div>
+					<div class="footer-links">
+						<a href="SignUp.php">
+							SignUp
+						</a>
+						<a href="#">
+							Login
+						</a>
+
+
+					</div>
+					<a href="#" style=" color:#fff; font-size: smaller;">
+						&copy;
+						<p>2023 EverythingOnRent. All rights reserved.</p>
+
+					</a>
 				</div>
 			</div>
 		</div>
+	</footer>
+
+
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <!-- jQuery -->

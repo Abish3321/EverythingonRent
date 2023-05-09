@@ -53,12 +53,49 @@ if ($pageName == 'provider_1.php') {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 	<style>
-		@media (min-width: 1200px) {
-			.contain {
-				width: 1300px;
-			}
+			.navbar-default {
+			background-color: #8B0000;
+			/* blood red */
+			border-color: #2e6da4;
 		}
 
+		.navbar-default .navbar-brand {
+			color: #fff;
+			/* white */
+		}
+
+		.navbar-default .navbar-nav>li>a {
+			color: #fff;
+			
+		}
+
+
+		.navbar-default .navbar-nav>li>a:hover {
+			color: #ffd700;
+		}
+
+
+		.navbar-default .navbar-nav>li>a::before {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 0%;
+			height: 2px;
+			background-color: #fff;
+			color: #ffd700;
+			transition: width 0.2s ease;
+		}
+
+		.navbar-default .navbar-nav>li>a:active:before {
+			color: #ffd700;
+			width:100%;
+		}
+
+		.navbar-default .navbar-nav>li>a:hover::before {
+			width: 100%;
+
+		}
 		.broom {
 			background-color: #07103e;
 			border-color: white;
@@ -76,37 +113,17 @@ if ($pageName == 'provider_1.php') {
 			margin: 0px;
 		}
 
-		.navbar-default {
-			background-color: #07103e;
-			border-color: #2e6da4;
+		.broom {
+			background-color: #ffd700;
+			border: none;
+			color: #232f3e;
 		}
 
-		.navbar-default .navbar-brand {
-			color: #fff;
+		.broom:hover {
+			background-color: #232f3e;
+			color: #ffd700;
 		}
-
-		.navbar-default .navbar-nav>li>a {
-			color: #fff;
-		}
-
-		.navbar-default .navbar-nav>li>a:hover,
-		.navbar-default .navbar-nav>li>a:focus {
-			background-color: #fff;
-			color: #07103e;
-		}
-
-		.navbar-default .navbar-nav>.active>a,
-		.navbar-default .navbar-nav>.active>a:hover,
-		.navbar-default .navbar-nav>.active>a:focus {
-			background-color: #fff;
-			color: #07103e;
-		}
-		.navbar-default .navbar-nav>.active>.addprod,
-		.navbar-default .navbar-nav>.active>.addprod:hover,
-		.navbar-default .navbar-nav>.active>.addprod:focus {
-			background-color: #fff;
-			color: #07103e;
-		}
+		
 	</style>
 </head>
 

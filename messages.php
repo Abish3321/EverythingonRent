@@ -15,14 +15,14 @@
         }
 
         .foot {
-            background-color: #07103e;
+            background-color: #8B0000;
             margin-top:42px;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background-color: #8B0000;
             color: #fff;
         }
 

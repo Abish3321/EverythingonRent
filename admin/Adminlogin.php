@@ -1,40 +1,36 @@
 <?php
 
-include 'dbconn.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (isset($_POST['login'])) {
-    // Retrieve form data
-
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $sql = "SELECT * FROM admin WHERE email='$email' AND password='$password'";
-    $result = mysqli_query($mysqli, $sql);
-
-    if (mysqli_num_rows($result) == 1) {
-      // Login success, store user data in session and redirect to dashboard
-      $user_data = mysqli_fetch_assoc($result);
+//include 'dbconn.php';
 
 
-      $_SESSION['is_login'] = true;
-      $_SESSION['id'] = $user_data['id'];
-      $_SESSION['email'] = $user_data['email'];
 
-      header('Location: admin.php');
-    } else {
-      // Login failed, display error message
-      header('Location: Adminlogin.php');
-    }
-  }
-}
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//   if (isset($_POST['login'])) {
+//     // Retrieve form data
+
+//     $email = $_POST['email'];
+//     $password = $_POST['password'];
+
+//     $sql = "SELECT * FROM admin WHERE email='$email' AND password='$password'";
+//     $result = mysqli_query($mysqli, $sql);
+
+//     if (mysqli_num_rows($result) == 1) {
+//       // Login success, store user data in session and redirect to dashboard
+//       $user_data = mysqli_fetch_assoc($result);
 
 
-//logout
-if (isset($_GET['logout'])) {
-  session_destroy();
-  unset($_SESSION['email']);
-  header('location: Adminlogin.php');
-}
+//       $_SESSION['is_login'] = true;
+//       $_SESSION['id'] = $user_data['id'];
+//       $_SESSION['email'] = $user_data['email'];
+
+//       header('Location: admin.php');
+//     } else {
+//       // Login failed, display error message
+//       header('Location: Adminlogin.php');
+//     }
+//   }
+// }
+
 ?>
 
 <!DOCTYPE php>
@@ -142,7 +138,7 @@ if (isset($_GET['logout'])) {
               </div>
               <div class="panel-body">
                 <h2 class="panel-title" style="font-size:25px; font-weight:bold;text-align:center;">Admin Login</h2>
-                <form method="post">
+                <form method="post" action="Category_data.php">
                   <div class="form-group">
                     <label for="login-email">Email</label>
                     <input type="email" class="form-control" name="email" id="login-email" placeholder="Enter email">
@@ -152,7 +148,7 @@ if (isset($_GET['logout'])) {
                     <input type="password" class="form-control" name="password" id="login-password" placeholder="Enter password">
                   </div>
 
-                  <button type="submit" name="login" class="btn btnbtn btn-default broom">Submit</button>
+                  <button type="submit" name="adminlogin" class="btn btnbtn btn-default broom">Submit</button>
 
                 </form>
               </div>

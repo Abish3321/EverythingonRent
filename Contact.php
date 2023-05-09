@@ -37,13 +37,13 @@
 				font-size:large;
 			}
         .foot {
-            background-color: #07103e;
+            background-color: #8B0000;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background-color: #8B0000;
             color: #fff;
         }
 

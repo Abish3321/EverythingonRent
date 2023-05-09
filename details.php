@@ -9,6 +9,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
     <link rel="shortcut icon" href="fonts/glyphicons-halflings-regular.eot" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         .broom {
             background-color: #07103e;
@@ -32,14 +35,19 @@
             max-width: 500px;
         }
 
+        .social-icons a {
+            color: white;
+            font-size: large;
+        }
+
         .foot {
-            background-color: #07103e;
+            background-color: #8B0000;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background-color: #8B0000;
             color: #fff;
         }
 
@@ -80,7 +88,6 @@
             text-align: center;
             color: #fff;
             background: #07103e;
-
         }
 
         .det_img {
@@ -221,7 +228,7 @@
     </div>
 
     <!-- footer -->
-    <div class="container-fluid foot">
+    <div class="container-fluid foot" style="margin-top:50px;">
         <div class="row">
             <div class="col-md-12">
                 <h1> </h1>
@@ -230,78 +237,72 @@
                         <div class="row">
                             <div class="col-md-3 m-b-30">
                                 <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    About us
+                                    Social Media
                                 </div>
-                                <p class="white-text">
-                                    Lorem Ipsum.
-                                </p>
-                            </div>
-                            <div class="col-md-3 m-b-30">
-                                <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    Latest themes
-                                </div>
-                                <div class="footer-links">
-                                    <a href="#">
-                                        Appointment
+                                <div class="social-icons">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-twitter"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-instagram"></i></a>&nbsp;
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    <hr>
+                                    <a href="#" style="font-size: smaller;">
+                                        &copy; 2023 EverythingOnRent. All rights reserved.
+
                                     </a>
-                                    <a href="#">
-                                        Health center
-                                    </a>
-                                    <a href="#">
-                                        Quality
-                                    </a>
-                                    <a href="#">
-                                        Wallstreet
-                                    </a>
+
                                 </div>
                             </div>
                             <div class="col-md-3 m-b-30">
                                 <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    Quick Links
+                                    Useful Links
                                 </div>
                                 <div class="footer-links">
-                                    <a href="#">
-                                        Blog
+                                    <a href="About.php">
+                                        About us
                                     </a>
-                                    <a href="#">
-                                        FAQ
+                                    <a href="Contact.php">
+                                        Contact us
                                     </a>
-                                    <a href="#">
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-3 m-b-30">
+                                <div class="footer-title m-t-5 m-b-20 p-b-8">
+                                    General Links
+                                </div>
+                                <div class="footer-links">
+
+                                    <a href="Terms.php">
                                         Terms & conditions
                                     </a>
-                                    <a href="#">
+                                    <a href="Privacy.php">
                                         Privacy policy
                                     </a>
                                 </div>
                             </div>
                             <div class="col-md-3 m-b-30">
                                 <div class="footer-title m-t-5 m-b-20 p-b-8">
-                                    Support
+                                    Links
                                 </div>
                                 <div class="footer-links">
-                                    <a href="#">
-                                        Affiliate
+                                    <a href="SignUp.php">
+                                        SignUp
                                     </a>
                                     <a href="#">
                                         Login
                                     </a>
-                                    <a href="#">
-                                        All theme package
-                                    </a>
-                                    <a href="#">
-                                        Support forum
-                                    </a>
+
+
                                 </div>
 
                             </div>
                         </div>
                     </div>
                 </footer>
-
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap JavaScript -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -22,13 +22,13 @@
 				font-size:large;
 			}
         .foot {
-            background-color: #07103e;
+            background-color: #8B0000;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background-color: #8B0000;
             color: #fff;
         }
 
@@ -235,8 +235,8 @@
                             echo "                Are you sure you want to accept this request?";
                             echo "            </div>";
                             echo "            <div class='modal-footer'>";
-                            echo "                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>";
-                            echo "                <button type='submit' name='accept' class='btn btn-success'>Accept</button>";
+                            echo "                <button type='button' class='btn btn-secondary' data-dismiss='modal'>No</button>";
+                            echo "                <button type='submit' name='accept' class='btn btn-success'>Yes</button>";
                             echo "            </div>";
                             echo "        </div>";
                             echo "    </div>";
@@ -258,8 +258,8 @@
                             echo "                <p style='text-align:center; font-weight:bold;'>Are you sure you want to reject this request?</p>";
                             echo "            </div>";
                             echo "            <div class='modal-footer'>";
-                            echo "                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Cancel</button>";
-                            echo "                <button type='submit' name='reject' class='btn btn-danger'>Reject</button>";
+                            echo "                <button type='button' class='btn btn-secondary' data-dismiss='modal'>No</button>";
+                            echo "                <button type='submit' name='reject' class='btn btn-danger'>Yes</button>";
                             echo "            </div>";
                             echo "        </div>";
                             echo "    </div>";

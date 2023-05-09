@@ -39,13 +39,13 @@
         }
 
         .foot {
-            background-color: #07103e;
+            background-color: #8B0000;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background: #8B0000;
             color: #fff;
         }
 
@@ -85,7 +85,7 @@
             padding: 25px 0;
             text-align: center;
             color: #fff;
-            background: #07103e;
+            background: #8B0000;
 
         }
 
@@ -260,8 +260,8 @@
                 <div class="modal-footer">
                     <form method="POST" action="">
                         <input type="hidden" name="itmid" value="<?php echo $row['item_id']; ?>">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="remove_request" class="btn btn-danger">Remove Request</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="submit" name="remove_request" class="btn btn-danger">Yes</button>
                     </form>
                 </div>
             </div>

@@ -35,13 +35,13 @@
 				font-size:large;
 			}
         .foot {
-            background-color: #07103e;
+			background-color: #8B0000;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+			background-color: #8B0000;
             color: #fff;
         }
 
@@ -164,8 +164,8 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<div class="panel panel-default">
-						<div class="panel-heading" style="display: -webkit-box; background-color: #07103e; color:white;">
-							<a href="profile.php"><span class="glyphicon glyphicon-triangle-left" style="color:white;"></span></a>&nbsp;&nbsp;
+						<div class="panel-heading" style="display: -webkit-box; background-color: #f2dede; color:#8B0000;">
+							<a href="profile.php"><span class="glyphicon glyphicon-triangle-left" style="color:#8B0000;"></span></a>&nbsp;&nbsp;
 							<h2 class="panel-title">Change Password</h2>
 						</div>
 						<div class="panel-body">
@@ -221,8 +221,8 @@
 												Are you sure you want to change your password?
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-												<button type="submit" name="change_pswd" class="btn btn-primary">Confirm</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+												<button type="submit" name="change_pswd" class="btn btn-primary">Yes</button>
 											</div>
 										</div>
 									</div>

@@ -20,18 +20,17 @@ include('server.php');
 	<style>
 		.broom,
 		.broo:hover {
-			background-color: #07103e;
-			border-color: white;
-			color: white;
+			background-color: #ffd700;
+			border: none;
+			color: #232f3e;
 		}
 
 		.broom:hover,
 		.broo {
-			background-color: white;
-			border-color: #07103e;
-			color: #07103e;
-
+			background-color: #232f3e;
+			color: #ffd700;
 		}
+
 
 		body {
 
@@ -55,7 +54,7 @@ include('server.php');
 		}
 
 		.navbar-default {
-			background-color: #07103e;
+			background-color: #8B0000;
 			border-color: #2e6da4;
 		}
 
@@ -78,6 +77,23 @@ include('server.php');
 		.navbar-default .navbar-nav>.active>a:focus {
 			background-color: #fff;
 			color: #07103e;
+		}
+
+		.choose {
+			border-color: #8B0000;
+			background-color: white;
+			color: #8B0000;
+		}
+
+		.choose:hover {
+			border-color: #8B0000;
+			background-color: #8B0000;
+			color: white;
+		}
+
+		label.btn.btn-default.choose.active {
+			background-color: #8B0000;
+			color :white;
 		}
 	</style>
 
@@ -108,7 +124,7 @@ include('server.php');
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-					<div class="panel-heading" style="background-color: #07103e; color:white; padding: 1px 0px;">
+					<div class="panel-heading" style="background-color: #8B0000; color:white; padding: 1px 0px;">
 						<div class="log-align-center" style="font-size:25px; text-align:center;">
 							<img src="images/logo.png" width="100">
 						</div>
@@ -117,12 +133,15 @@ include('server.php');
 						<h2 class="panel-title" style="font-size:20px; font-weight:bold;text-align:center; padding-bottom:8px;">Sign Up</h2>
 						<form action="server.php" method="POST" enctype="multipart/form-data">
 							<div class="col-md-6">
-								<div class="form-group">
-									<input type="radio" id="usrttype" name="user_type" value="provider" required>
-									<label for="provider">&nbsp;Provider</label>&nbsp;&nbsp;&nbsp;
-									<input type="radio" id="usrttype" name="user_type" value="renter">
-									<label for="renter">&nbsp;Renter</label>
-								</div>
+							<div class="btn-group" data-toggle="buttons">
+									<label class="btn btn-default choose">
+										<input type="radio" id="usrttype" name="user_type" value="provider" autocomplete="off" checked> Provider
+									</label>
+									<label class="btn btn-default choose">
+										<input type="radio" id="usrttype" name="user_type" value="renter" autocomplete="off"> Renter
+									</label>
+								</div><br><br>
+
 								<div class="form-group">
 									<label for="reg-name">Name</label>
 									<input type="text" class="form-control" id="reg-name" name="name" placeholder="Enter name" required>

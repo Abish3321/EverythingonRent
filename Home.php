@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>Bootstrap 101 Template</title>
+	<title>Home</title>
 
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script src="js/bootstrap.min.js"></script>
@@ -15,43 +15,103 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<style>
-		.jumbotron {
-			background: url('images/img2.jpg') no-repeat center center fixed;
+		.hero {
+			background: url('images/toy-model-house-piles-coins-front-view.jpg');
+			background-repeat: no-repeat;
+			background-position: center;
 			background-size: cover;
+			padding: 100px 0;
+			margin-top: 50px;
+			box-shadow: 0px 0px 10px #888888;
+
+			margin-bottom: 0;
 			color: white;
-			text-align: center;
-
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 		}
 
-		.jumbotron text {
-			padding: 100px;
+		.hero h1 {
+			font-size: 4rem;
+			margin-bottom: 30px;
 		}
 
-		.broom {
-			background-color: #07103e;
-			border-color: white;
-			color: white;
+		.hero p {
+			font-size: 1.5rem;
+			margin-bottom: 30px;
+		}
+		.hero a.btn {
+			font-size: 1.5rem;
+		}
+		
+
+		.btn.btn-default.broom {
+			background-color: #ffd700;
+			border: none;
+			color: #232f3e;
 		}
 
-		.broom:hover {
-			background-color: white;
-			border-color: #07103e;
-			color: #07103e;
-
+		.btn.btn-default.broom:hover {
+			background-color: #232f3e;
+			color: #ffd700;
 		}
 
 		.social-icons a{
 				color: white;
 				font-size:large;
 			}
+        
+
+		.thumb {
+			margin-right: 20px;
+			margin-left: 20px;
+		}
+
+		.thumbnail {
+			border: none;
+			border-radius: 0;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			margin-bottom: 30px;
+			height: 350px;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.thumbnail img {
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.thumbnail .caption {
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.thumbnail .caption h4,
+		.thumbnail .caption p {
+			white-space: nowrap;
+			overflow: hidden;
+			margin-top: 0;
+			text-overflow: ellipsis;
+		}
+
+		.thumbnail .caption p {
+			height: 50px;
+			margin-bottom: 0px;
+
+			/* adjust this value as needed */
+		}
+		.social-icons a {
+            color: white;
+            font-size: large;
+        }
+
         .foot {
-            background-color: #07103e;
+            background-color: #8B0000;
         }
 
         .footer {
             padding: 60px 0;
             width: 100%;
-            background: #07103e;
+            background-color: #8B0000;
             color: #fff;
         }
 
@@ -96,34 +156,6 @@
             background: #07103e;
 
         }
-
-		.thumb {
-			margin-right: 20px;
-			margin-left: 20px;
-		}
-
-		.thumbnail {
-			height: 300px;
-		}
-
-		.thumbnail img {
-			height: 150px;
-			max-width: 100%;
-			display: block;
-			margin: auto;
-		}
-
-		.thumb p {
-			display: inline-block;
-			width: -webkit-fill-available;
-			white-space: nowrap;
-			overflow: hidden !important;
-			text-overflow: ellipsis;
-		}
-
-		.thumb img {
-			width: 90%;
-		}
 	</style>
 </head>
 
@@ -131,33 +163,35 @@
 <body>
 	<?php include 'header.php'; ?>
 
-	<div class="container" style="padding-top: 50px;">
-		<div class="jumbotron text-center">
-			<div class="container text">
+	<div class="container">
+		<section class="hero">
+			<div class="container text-center">
 				<h1>Everthing On Rent</h1>
 				<p>Save Time and Money: Rent Appliances, Electronics, and More</p>
 				<p>And Get What You're Looking For At Your Convienience!</p>
 				<p>
-					<a class="btn btnbtn btn-default broom" style="width:20%; font-weight:bold;" href="#" role="button">Learn more</a>
+					<a class="btn btn-default broom" style="width:20%; font-weight:bold;" href="about.php" role="button">Learn more</a>
 				</p>
 			</div>
-		</div><!-- /.jumbotron -->
+		</section>
 	</div>
-
 	<div class="container">
-		<div class="row">
+		<div class="row" style="margin-top: 25px;">
 			<div class="col-md-12">
 				<form class="form-inline" role="search" style="width:40%;">
 					<div class="input-group" style="width: -webkit-fill-available;">
 						<input type="text" id="searchInput" class="form-control" placeholder="Search">
 						<span class="input-group-btn">
-							<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+							<button type="submit" class="btn btn-default broom" style="padding:7px"><i class="fa fa-search"></i></button>
 						</span>
 					</div>
 				</form>
 			</div>
 		</div>
-	</div><br><br>
+	</div>
+
+
+	<br><br>
 	<!-- category -->
 	<!-- thumbnail -->
 	<div class="container">
@@ -192,8 +226,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">Gadgets You'll Love,Get it On Rent!!</div>
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+						<h5 class="panel-title">Gadgets You'll Love,Get it On Rent!!</h5>
+					</div>
 					<div class="panel-body">
 						<img src="images/amazon.jpg" alt="Banner Ad" class="img-responsive">
 					</div>
@@ -202,6 +238,7 @@
 		</div>
 		<!-- Banner Ad -->
 	</div>
+
 
 	<!-- footer -->
 	<div class="container-fluid foot">
